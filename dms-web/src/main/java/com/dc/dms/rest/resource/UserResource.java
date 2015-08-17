@@ -1,16 +1,17 @@
 package com.dc.dms.rest.resource;
 
 
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.dc.dms.entity.UserEntity;
+import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.UserService;
 
@@ -24,20 +25,23 @@ public class UserResource {
 	private UserService userService;
 	
 	
-	@GET
-	@Path("/{loginId}")
+	@POST
+	@Path("/getUser")
 	@Produces({MediaType.TEXT_PLAIN})
-	public String getUserByLogin(@PathParam("loginId") String loginId){
-
+	public User getUserByLogin(@FormParam("loginId") String loginId, @FormParam("password") String pwd){
+		
+		User u = null;
+		
 		try {
-			UserEntity ue = new UserEntity();
-			ue.setLoginId(loginId);
-			userService.getUserByLogin(ue);
+			u = new User();
+			u.setLoginId(loginId);
+			u = userService.getUserByLogin(u);
 		} catch (DMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			u = null;
 		}
-		return "Test Success";
+		return u;
 	}
 	
 	

@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dc.dms.config.DMSServiceConfig;
 import com.dc.dms.config.DatabaseJpaConfig;
-import com.dc.dms.entity.UserEntity;
+import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.UserService;
 
@@ -29,7 +29,7 @@ public class UserServiceImplTest {
 	public void testRegisterUser_withnoException() {
 		
 		
-		UserEntity user1 = new UserEntity();
+		User user1 = new User();
 		//user1.setUserId(new BigInteger("2"));
 		user1.setFirstName("Sachin");
 		user1.setLoginId("sjoshi");

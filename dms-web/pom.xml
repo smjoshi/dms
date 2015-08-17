@@ -73,12 +73,20 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-multipart</artifactId>
 			<version>${jersey.version}</version>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-entity-filtering</artifactId>
 			<version>${jersey.version}</version>
-		</dependency>				
+		</dependency>
+
+		<!-- Jersey client -->
+
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
 
 		<!-- Spring 4 dependencies -->
 		<dependency>
@@ -92,11 +100,11 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 			<exclusions>
-			   <exclusion>
-			      <groupId>commons-logging</groupId>
-			      <artifactId>commons-logging</artifactId>
-			   </exclusion>
-			</exclusions>			
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -110,11 +118,27 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcloverslf4j.version}</version>
+		</dependency>
+
+
 	</dependencies>
 	<properties>
 		<jersey.version>2.19</jersey.version>
-		<spring.version>4.1.6.RELEASE</spring.version> 
+		<spring.version>4.1.6.RELEASE</spring.version>
+		<logback.version>1.1.3</logback.version>
+		<jcloverslf4j.version>1.7.12</jcloverslf4j.version>
 		<dms-service-version>1.0-SNAPSHOT</dms-service-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

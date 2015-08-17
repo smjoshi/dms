@@ -19,26 +19,71 @@ import org.springframework.stereotype.Repository;
 @Transactional
 public class UserDaoImpl extends AbstractDmsDao implements UserDao {
 
+	public UserEntity getUserByLoginId(String loginId) throws DMSDaoException {
 
-    public UserEntity getUserByLoginId(String loginId) throws DMSDaoException {
-        String queryStr = "SELECT u FROM User u where u.loginId = ?1";
-        TypedQuery<UserEntity> query = entityManager.createQuery(queryStr, UserEntity.class);
-        query.setParameter(1, loginId);
-        return query.getSingleResult();
+		UserEntity user = null;
 
-    }
+		try {
+			String queryStr = "SELECT u FROM UserEntity u where u.loginId = ?1";
+			TypedQuery<UserEntity> query = entityManager.createQuery(queryStr,
+					UserEntity.class);
+			query.setParameter(1, loginId);
+			user = query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			user = null;
+		}
 
-    public UserEntity readByKey(UserEntity user) throws DMSDaoException {
-        return entityManager.find(UserEntity.class, user.getUserId());
-    }
+		return user;
 
-    public UserEntity create(UserEntity user) throws DMSDaoException {
-        entityManager.persist(user);
-        return user;
-    }
+	}
 
-    public boolean update(UserEntity user) throws DMSDaoException {
-        entityManager.merge(user);
-        return true;
+	public UserEntity getUserByEmailId(String emailId) throws DMSDaoException {
+
+		UserEntity user = null;
+
+		try {
+			String queryStr = "SELECT u FROM UserEntity u where u.email = ?1";
+			TypedQuery<UserEntity> query = entityManager.createQuery(queryStr,
+					UserEntity.class);
+			query.setParameter(1, emailId);
+			user = query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			user = null;
+		}
+
+		return user;
+
+	}
+
+	public UserEntity readByKey(UserEntity user) throws DMSDaoException {
+		return entityManager.find(UserEntity.class, user.getUserId());
+	}
+
+	public UserEntity create(UserEntity user) throws DMSDaoException {
+		entityManager.persist(user);
+		return user;
+	}
+
+	public boolean update(UserEntity user) throws DMSDaoException {
+		entityManager.merge(user);
+		return true;
+	}
+	
+
+	public UserEntity getUserByCredentials(UserEntity user) throws DMSDaoException {
+    	
+		UserEntity fetchedUser = null;
+    	if (user.getLoginId() != null){
+    		fetchedUser = getUserByLoginId(user.getLoginId());
+    	}else if (user.getEmail() != null){
+    		fetchedUser = getUserByEmailId(user.getEmail());
+    	}
+    	
+      return fetchedUser;	
+    	
     }
 }

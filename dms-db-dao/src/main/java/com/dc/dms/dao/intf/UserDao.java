@@ -11,4 +11,6 @@ public interface UserDao extends BaseDao<UserEntity> {
 
     UserEntity getUserByLoginId(String loginId) throws DMSDaoException;
     
+    
+    
 }
