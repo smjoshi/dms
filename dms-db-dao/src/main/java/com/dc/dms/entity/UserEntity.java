@@ -17,7 +17,7 @@ public class UserEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="EMAIL")
+	@Column(name="EMAIL_ID")
 	private String email;
 
 	@Column(name="FIRST_NAME")

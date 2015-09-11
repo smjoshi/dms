@@ -1,6 +1,6 @@
 package com.dc.dms.rest.resource;
 
-
+import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,23 +15,21 @@ import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.UserService;
 
-
-
 @Component
 @Path("/users")
 public class UserResource {
-	
+
 	@Autowired
 	private UserService userService;
-	
-	
+
 	@POST
 	@Path("/getUser")
-	@Produces({MediaType.TEXT_PLAIN})
-	public User getUserByLogin(@FormParam("loginId") String loginId, @FormParam("password") String pwd){
-		
+	@Produces({ MediaType.TEXT_PLAIN })
+	public User getUserByLogin(@FormParam("loginId") String loginId,
+			@FormParam("password") String pwd) {
+
 		User u = null;
-		
+
 		try {
 			u = new User();
 			u.setLoginId(loginId);
@@ -43,13 +41,28 @@ public class UserResource {
 		}
 		return u;
 	}
-	
-	
+
+	@POST
+	@Path("/json/getUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUserByLoginJson(User user) {
+		User fetchedUser = null;
+
+		try {
+			fetchedUser = userService.getUserByCredentials(user);
+		} catch (DMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fetchedUser = null;
+		}
+		return fetchedUser;
+	}
+
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getUsers(){
-		return  "Test Success";
+	public String getUsers() {
+		return "Test Success";
 	}
-	
 
 }

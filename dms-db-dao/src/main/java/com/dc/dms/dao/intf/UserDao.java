@@ -9,7 +9,9 @@ import com.dc.dms.entity.UserEntity;
  */
 public interface UserDao extends BaseDao<UserEntity> {
 
-    UserEntity getUserByLoginId(String loginId) throws DMSDaoException;
+    public UserEntity getUserByLoginId(String loginId) throws DMSDaoException;
+    
+    public UserEntity getUserByCredentials(UserEntity user) throws DMSDaoException;
     
     
     

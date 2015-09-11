@@ -46,6 +46,23 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
+	
+	@Override
+	public User getUserByCredentials(User user) throws DMSException {
+		UserEntity fetchedUser = null;
+		
+		try {
+			UserEntity tobeFetched = prepareUserEntity(user);
+			fetchedUser = userDao.getUserByCredentials(tobeFetched);
+			user = populateUserModel(fetchedUser);
+		} catch (DMSDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DMSException();
+		}
+		return user;
+	}
+	
 	public UserDao getUserDao() {
 		return userDao;
 	}
@@ -74,13 +91,15 @@ public class UserServiceImpl implements UserService {
 	private User populateUserModel(UserEntity userEntity){
 		User user = null;
 		
-		user.setEmail(userEntity.getEmail());
-		user.setFirstName(userEntity.getFirstName());
-		user.setLastName(userEntity.getLastName());
-		user.setLoginId(userEntity.getLoginId());
-		user.setOrgName(user.getOrgName());
-		user.setPassword(userEntity.getPassword());
-		user.setUserId(userEntity.getUserId());
+		if (userEntity != null){
+			user.setEmail(userEntity.getEmail());
+			user.setFirstName(userEntity.getFirstName());
+			user.setLastName(userEntity.getLastName());
+			user.setLoginId(userEntity.getLoginId());
+			user.setOrgName(user.getOrgName());
+			user.setPassword(userEntity.getPassword());
+			user.setUserId(userEntity.getUserId());
+		}
 		
 		return user;
 		

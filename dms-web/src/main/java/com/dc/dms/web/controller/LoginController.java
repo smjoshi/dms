@@ -1,14 +1,12 @@
 package com.dc.dms.web.controller;
 
-import javax.ws.rs.core.Form;
-import javax.ws.rs.core.Response;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dc.dms.domain.model.User;
 import com.dc.dms.web.utils.RestUtils;
 
 @Controller
@@ -28,15 +26,23 @@ public class LoginController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		Form loginForm = new Form();
+//		Form loginForm = new Form();
+//		
+//		loginForm.param("loginId", email);
+//		loginForm.param("password", password);
+//		
+//		//Get User Resource
+//		String userResourceURL = "http://localhost:8080/dms-web/api/users/getUser";
+//		Response response = RestUtils.callPostRestService(userResourceURL, loginForm);
 		
-		loginForm.param("loginId", email);
-		loginForm.param("password", password);
 		
-		//Get User Resource
-		String userResourceURL = "http://localhost:8080/dms-web/api/users/getUser";
-		Response response = RestUtils.callPostRestService(userResourceURL, loginForm);
+		String resourcePath = "/users/json/getUser";
 		
+		User user = new User();
+		user.setEmail(email);
+		user.setPassword(password);
+		
+		RestUtils.callPostJsonRestService(resourcePath, user, User.class);
 		
 		return mv;
 		

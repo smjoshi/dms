@@ -79,6 +79,11 @@
 			<artifactId>jersey-entity-filtering</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-moxy</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
 
 		<!-- Jersey client -->
 
@@ -87,6 +92,7 @@
 			<artifactId>jersey-client</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
+
 
 		<!-- Spring 4 dependencies -->
 		<dependency>
