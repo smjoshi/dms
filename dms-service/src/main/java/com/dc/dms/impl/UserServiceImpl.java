@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
 	
 	
 	private User populateUserModel(UserEntity userEntity){
-		User user = null;
+		User user = new User();
 		
 		if (userEntity != null){
 			user.setEmail(userEntity.getEmail());
@@ -103,6 +103,30 @@ public class UserServiceImpl implements UserService {
 		
 		return user;
 		
+	}
+
+
+	@Override
+	public User addUser(User user) throws DMSException {
+		
+		try {
+			UserEntity userEntity = prepareUserEntity(user);
+			userEntity = userDao.create(userEntity);
+			user = populateUserModel(userEntity);
+		} catch (DMSDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DMSException();
+		}
+		
+		return user;
+	}
+
+
+	@Override
+	public User deleteUser(User user) throws DMSException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

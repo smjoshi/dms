@@ -30,6 +30,9 @@ public class User implements Serializable{
 	@XmlElement(name="orgName")
 	private String orgName;
 	
+	@XmlElement(name="orgType")
+	private String orgType;
+	
 	@XmlElement(name="password")
 	private String password;
 	
@@ -99,6 +102,16 @@ public class User implements Serializable{
 
 	public void setUserId(BigInteger userId) {
 		this.userId = userId;
+	}
+
+
+	public String getOrgType() {
+		return orgType;
+	}
+
+
+	public void setOrgType(String orgType) {
+		this.orgType = orgType;
 	}
 	
 	

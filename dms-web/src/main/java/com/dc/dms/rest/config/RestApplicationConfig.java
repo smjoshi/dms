@@ -8,7 +8,6 @@ public class RestApplicationConfig extends ResourceConfig {
 	
 	public RestApplicationConfig(){
 		packages("com.dc.dms.rest.resource");
-		//register(UserResource.class);
 	}
 
 }

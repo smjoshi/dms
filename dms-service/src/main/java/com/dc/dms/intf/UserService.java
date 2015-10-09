@@ -15,5 +15,9 @@ public interface UserService {
 	public User getUserByLogin(User user) throws DMSException;
 	
 	public User getUserByCredentials(User user) throws DMSException;
+	
+	public User addUser(User user) throws DMSException;
+	
+	public User deleteUser(User user) throws DMSException;
 
 }

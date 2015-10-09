@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.UserService;
+import com.dc.dms.rest.exception.AppExceptionMapper;
+import com.dc.dms.rest.exception.AppRestException;
 
 @Component
 @Path("/users")
@@ -26,7 +28,7 @@ public class UserResource {
 	@Path("/getUser")
 	@Produces({ MediaType.TEXT_PLAIN })
 	public User getUserByLogin(@FormParam("loginId") String loginId,
-			@FormParam("password") String pwd) {
+			@FormParam("password") String pwd) throws AppRestException {
 
 		User u = null;
 
@@ -35,9 +37,9 @@ public class UserResource {
 			u.setLoginId(loginId);
 			u = userService.getUserByLogin(u);
 		} catch (DMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			u = null;
+			throw new AppRestException();
+
 		}
 		return u;
 	}
@@ -46,7 +48,7 @@ public class UserResource {
 	@Path("/json/getUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUserByLoginJson(User user) {
+	public User getUserByLoginJson(User user) throws AppRestException {
 		User fetchedUser = null;
 
 		try {
@@ -55,6 +57,7 @@ public class UserResource {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fetchedUser = null;
+			throw new AppRestException();
 		}
 		return fetchedUser;
 	}
@@ -63,6 +66,44 @@ public class UserResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getUsers() {
 		return "Test Success";
+	}
+
+	/**
+	 * 
+	 * This method adds new user to system
+	 * @param user
+	 * @return
+	 * @throws AppRestException
+	 */
+	@POST
+	@Path("/json/createUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User addUser(User user) throws AppRestException {
+
+		User createdUser = null;
+		
+		try {
+			createdUser = userService.addUser(user);
+		} catch (DMSException e) {
+			e.printStackTrace();
+			createdUser = null;
+			throw new AppRestException();
+		}
+		
+		return createdUser;
+	}
+
+	/**
+	 * This method deletes the existing user
+	 * 
+	 * @param user
+	 * @return
+	 * @throws AppRestException
+	 */
+	public boolean deleteUser(User user) throws AppRestException {
+
+		throw new UnsupportedOperationException();
 	}
 
 }
