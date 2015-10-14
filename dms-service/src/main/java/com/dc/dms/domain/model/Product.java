@@ -1,6 +1,7 @@
 package com.dc.dms.domain.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -19,26 +20,26 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = -1877464203488457714L;
 	
 	@XmlElementRef(name="productId")
-	public Long productId;
+	protected BigInteger productId;
 	
 	
 	@XmlElementRef(name="productName")
-	public String productName;
+	protected String productName;
 	
 	@XmlElementRef(name="description")
-	public String  description;
+	private String  description;
 	
 	@XmlElementRef(name="productCode")
-	public String productCode;
+	protected String productCode;
 	
 	@XmlElementRef(name="orgId")
-	public Long orgId;
+	protected BigInteger orgId;
 
-	public Long getProductId() {
+	public BigInteger getProductId() {
 		return productId;
 	}
 
-	public void setProductId(Long productId) {
+	public void setProductId(BigInteger productId) {
 		this.productId = productId;
 	}
 
@@ -66,11 +67,11 @@ public class Product implements Serializable {
 		this.productCode = productCode;
 	}
 
-	public Long getOrgId() {
+	public BigInteger getOrgId() {
 		return orgId;
 	}
 
-	public void setOrgId(Long orgId) {
+	public void setOrgId(BigInteger orgId) {
 		this.orgId = orgId;
 	}
 	
