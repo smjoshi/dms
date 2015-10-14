@@ -13,6 +13,10 @@ import com.dc.dms.entity.ProductDocConfEntity;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.ProductDocConfService;
 
+/**
+ * @author SJoshi
+ *
+ */
 public class ProductDocConfServiceImpl implements ProductDocConfService {
 
 	@Autowired
@@ -41,6 +45,9 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 		return processedConf;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.dc.dms.intf.ProductDocConfService#getProductDocConfiguration(java.math.BigInteger)
+	 */
 	@Override
 	public List<ProductDocConfiguration> getProductDocConfiguration(
 			BigInteger productId) throws DMSException {
@@ -52,6 +59,10 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 	
 	
 	
+	/**
+	 * @param docConf
+	 * @return
+	 */
 	private ProductDocConfEntity prepareDocConfEntity(ProductDocConfiguration docConf){
 		ProductDocConfEntity docConfEntity = new ProductDocConfEntity();
 		
@@ -69,6 +80,10 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 	}
 	
 	
+	/**
+	 * @param prodDocEntity
+	 * @return
+	 */
 	private ProductDocConfiguration populateDocConfModel(ProductDocConfEntity prodDocEntity){
 
 		ProductDocConfiguration docConf = new ProductDocConfiguration();

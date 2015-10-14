@@ -30,18 +30,18 @@ public class UserResource {
 	public User getUserByLogin(@FormParam("loginId") String loginId,
 			@FormParam("password") String pwd) throws AppRestException {
 
-		User u = null;
+		User user = null;
 
 		try {
-			u = new User();
-			u.setLoginId(loginId);
-			u = userService.getUserByLogin(u);
+			user = new User();
+			user.setLoginId(loginId);
+			user = userService.getUserByLogin(user);
 		} catch (DMSException e) {
-			u = null;
+			user = null;
 			throw new AppRestException();
 
 		}
-		return u;
+		return user;
 	}
 
 	@POST
