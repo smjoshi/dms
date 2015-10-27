@@ -18,10 +18,8 @@ public class LoginController {
 
 	@RequestMapping(value = "/loginRequest", method = RequestMethod.GET)
 	public ModelAndView getLoginView() {
-
 		ModelAndView mv = new ModelAndView("login");
 		return mv;
-
 	}
 
 	@RequestMapping(value = "/users/login", method = RequestMethod.POST)
@@ -30,7 +28,6 @@ public class LoginController {
 			@RequestParam(value = "password", required = true) String password) {
 
 		ModelAndView mv = new ModelAndView();
-
 		String resourcePath = "/users/json/getUser";
 
 		User user = new User();
@@ -39,16 +36,12 @@ public class LoginController {
 
 		Response response = RestUtils.callPostJsonRestService(resourcePath,
 				user, User.class);
-
 		if (response.getStatus() == 204) {
-
 			mv.getModel().put("message",
 					"Credentials are not correct, if not a member , SIGN UP!!");
 			mv.setViewName("login");
 		}
-
 		return mv;
-
 	}
 
 	@RequestMapping(value = "/signUpRequest", method = RequestMethod.GET)
@@ -63,7 +56,7 @@ public class LoginController {
 	public ModelAndView registerUser(@ModelAttribute("form-signup") User user) {
 
 		ModelAndView mv = new ModelAndView();
-		String homeView = "home";
+		String homeView = "homePage";
 
 		String createUserResource = "/users/json/createUser";
 		String createOrgResource = "/org/json/createOrg";
@@ -75,7 +68,7 @@ public class LoginController {
 		if (userResponse.getStatus() == 200) {
 			createdUser = userResponse.readEntity(User.class);
 
-			// On successfule user creation add orgnization for User
+			// On successful user creation add orgnization for User
 			Organization userOrg = new Organization();
 
 			userOrg.setOrgName(user.getOrgName());

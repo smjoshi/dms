@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.UserService;
-import com.dc.dms.rest.exception.AppExceptionMapper;
 import com.dc.dms.rest.exception.AppRestException;
 
 @Component
@@ -101,6 +100,10 @@ public class UserResource {
 	 * @return
 	 * @throws AppRestException
 	 */
+	@POST
+	@Path("/json/deleteUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public boolean deleteUser(User user) throws AppRestException {
 
 		throw new UnsupportedOperationException();

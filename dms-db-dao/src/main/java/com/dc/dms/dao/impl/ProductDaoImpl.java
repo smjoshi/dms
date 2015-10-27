@@ -4,12 +4,19 @@ import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
 import com.dc.dms.base.AbstractDmsDao;
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.ProductDao;
 import com.dc.dms.entity.ProductEntity;
 
+@Repository
+@Qualifier("productDao")
+@Transactional
 public class ProductDaoImpl extends AbstractDmsDao implements ProductDao {
 
 	@Override

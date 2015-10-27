@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.ProductDao;
@@ -13,6 +14,7 @@ import com.dc.dms.entity.ProductEntity;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.ProductService;
 
+@Service("productService")
 public class ProductServiceImpl implements ProductService {
 	
 	@Autowired

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.ProductDocConfDao;
@@ -17,6 +18,8 @@ import com.dc.dms.intf.ProductDocConfService;
  * @author SJoshi
  *
  */
+
+@Service("confService")
 public class ProductDocConfServiceImpl implements ProductDocConfService {
 
 	@Autowired
@@ -80,10 +83,6 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 	}
 	
 	
-	/**
-	 * @param prodDocEntity
-	 * @return
-	 */
 	private ProductDocConfiguration populateDocConfModel(ProductDocConfEntity prodDocEntity){
 
 		ProductDocConfiguration docConf = new ProductDocConfiguration();
