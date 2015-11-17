@@ -36,7 +36,10 @@ public class LoginController {
 
 		Response response = RestUtils.callPostJsonRestService(resourcePath,
 				user, User.class);
-		if (response.getStatus() == 204) {
+		
+		if (response.getStatus() == 200){
+			mv.setViewName("homeView");
+		}else if (response.getStatus() == 204) {
 			mv.getModel().put("message",
 					"Credentials are not correct, if not a member , SIGN UP!!");
 			mv.setViewName("login");
@@ -79,7 +82,7 @@ public class LoginController {
 					createOrgResource, userOrg, Organization.class);
 
 			if (orgCreateRespose.getStatus() == 200) {
-				// do nothing
+				mv.setViewName(homeView);
 			} else {
 				mv.getModel().put("message", "Error while persisting Org");
 			}
@@ -89,8 +92,6 @@ public class LoginController {
 					"Credentials are not correct, if not a member , SIGN UP!!");
 			mv.setViewName("login");
 		}
-
-		mv.setViewName(homeView);
 
 		return mv;
 
