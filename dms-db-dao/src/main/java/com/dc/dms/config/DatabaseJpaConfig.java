@@ -27,9 +27,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DatabaseJpaConfig {
 	
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "admin";
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/dms";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "devstart";
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://dms-dev.cceizkyh70ud.us-west-2.rds.amazonaws.com:3306/dms";
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "dmsdev";
          
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
