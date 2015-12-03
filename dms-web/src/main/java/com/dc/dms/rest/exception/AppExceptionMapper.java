@@ -1,14 +1,17 @@
 package com.dc.dms.rest.exception;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
-public class AppExceptionMapper implements ExceptionMapper<AppRestException> {
+import org.glassfish.jersey.internal.Errors.ErrorMessage;
+
+public class AppExceptionMapper implements ExceptionMapper<ApplicationRestException> {
 
 	@Override
-	public Response toResponse(AppRestException arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Response toResponse(ApplicationRestException restException) {
+		return Response.status(restException.getStatus()).entity(new com.dc.dms.rest.exception.ErrorMessage(restException))
+				.type(MediaType.APPLICATION_JSON).build();
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.dc.dms.rest.resource;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,8 +13,9 @@ import org.springframework.stereotype.Component;
 
 import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
+import com.dc.dms.exception.DuplicateUserException;
 import com.dc.dms.intf.UserService;
-import com.dc.dms.rest.exception.AppRestException;
+import com.dc.dms.rest.exception.ApplicationRestException;
 
 @Component
 @Path("/users")
@@ -23,73 +24,50 @@ public class UserResource {
 	@Autowired
 	private UserService userService;
 
-	@POST
-	@Path("/getUser")
-	@Produces({ MediaType.TEXT_PLAIN })
-	public User getUserByLogin(@FormParam("loginId") String loginId,
-			@FormParam("password") String pwd) throws AppRestException {
-
-		User user = null;
-
-		try {
-			user = new User();
-			user.setLoginId(loginId);
-			user = userService.getUserByLogin(user);
-		} catch (DMSException e) {
-			user = null;
-			throw new AppRestException();
-
-		}
-		return user;
-	}
 
 	@POST
-	@Path("/json/getUser")
+	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUserByLoginJson(User user) throws AppRestException {
+	public User getUserDetails(User user) throws ApplicationRestException {
 		User fetchedUser = null;
 
 		try {
 			fetchedUser = userService.getUserByCredentials(user);
-		} catch (DMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (DMSException dmsEx) {
+			dmsEx.printStackTrace();
 			fetchedUser = null;
-			throw new AppRestException();
+			throw new NotFoundException();
 		}
 		return fetchedUser;
 	}
 
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getUsers() {
-		return "Test Success";
-	}
+
 
 	/**
 	 * 
 	 * This method adds new user to system
+	 * 
 	 * @param user
 	 * @return
-	 * @throws AppRestException
+	 * @throws ApplicationRestException
 	 */
 	@POST
-	@Path("/json/createUser")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User addUser(User user) throws AppRestException {
+	public User registerUser(User user) throws ApplicationRestException {
 
 		User createdUser = null;
-		
+
 		try {
-			createdUser = userService.addUser(user);
-		} catch (DMSException e) {
+				createdUser = userService.registerUser(user);
+		} catch (DuplicateUserException | DMSException e ) {
 			e.printStackTrace();
 			createdUser = null;
-			throw new AppRestException();
-		}
-		
+			throw new ApplicationRestException();
+		} 
+
 		return createdUser;
 	}
 
@@ -98,13 +76,13 @@ public class UserResource {
 	 * 
 	 * @param user
 	 * @return
-	 * @throws AppRestException
+	 * @throws ApplicationRestException
 	 */
-	@POST
-	@Path("/json/deleteUser")
+	@DELETE
+	@Path("/{userId}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean deleteUser(User user) throws AppRestException {
+	public boolean deleteUser(User user) throws ApplicationRestException {
 
 		throw new UnsupportedOperationException();
 	}

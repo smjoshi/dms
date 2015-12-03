@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 import com.dc.dms.domain.model.Product;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.ProductService;
-import com.dc.dms.rest.exception.AppRestException;
+import com.dc.dms.rest.exception.ApplicationRestException;
 
 @Component
 @Path("/products")
@@ -30,7 +31,7 @@ public class ProductResource {
 	 * @return
 	 */
 	@GET
-	@Path("/joson/getProducts/{orgId}")
+	@Path("/org/{orgId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Product> getAllProducts(BigInteger orgId){
 		
@@ -51,7 +52,7 @@ public class ProductResource {
 	 * @return
 	 */
 	@GET
-	@Path("/json/getProduct/{productId}")
+	@Path("/{productId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Product getProduct(BigInteger productId){
 		
@@ -65,19 +66,19 @@ public class ProductResource {
 	 * @return
 	 */
 	@POST
-	@Path("/json/addProduct")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Product addOrUpdateProduct(Product product) throws AppRestException{
+	public Product addOrUpdateProduct(Product product) throws ApplicationRestException{
 		
 		Product dbReturnedProduct = null;
-		try {
-			dbReturnedProduct = productService.createOrUpdateProduct(product);
-		} catch (DMSException e) {
-			e.printStackTrace();
-			dbReturnedProduct = null;
-			throw new AppRestException();
-		}
+//		try {
+//			//dbReturnedProduct = productService.createOrUpdateProduct(product);
+//		} catch (DMSException e) {
+//			e.printStackTrace();
+//			dbReturnedProduct = null;
+//			throw new ApplicationRestException();
+//		}
 		return dbReturnedProduct;
 	}
 	
@@ -85,8 +86,8 @@ public class ProductResource {
 	 * @param product
 	 * @return
 	 */
-	@POST
-	@Path("/json/deleteProduct")
+	@DELETE
+	@Path("/{productId}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public boolean deleteProduct(Product product){

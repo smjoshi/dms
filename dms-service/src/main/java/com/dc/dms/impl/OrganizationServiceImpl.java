@@ -20,7 +20,26 @@ public class OrganizationServiceImpl implements OrganizationService {
 	
 
 	@Override
-	public Organization createOrUpdateOrginzation(Organization org)
+	public Organization getOrganizationDetail(BigInteger orgId) throws DMSException {
+		
+		Organization org = null;
+		
+		try {
+			OrgEntity orgEntity = new OrgEntity();
+			orgEntity.setOrgId(orgId);
+			orgEntity =  orgDao.readByKey(orgEntity);
+			if (orgEntity != null){
+				org = populateOrgModel(orgEntity);
+			}
+		} catch (DMSDaoException e) {
+			throw new DMSException(303, e.getMessage());
+		}
+		
+		return org;
+	}
+
+	@Override
+	public Organization upsertOrginzation(Organization org)
 			throws DMSException {
 		
 		Organization processedOrg = null;

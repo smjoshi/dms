@@ -11,6 +11,7 @@ import com.dc.dms.config.DMSServiceConfig;
 import com.dc.dms.config.DatabaseJpaConfig;
 import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
+import com.dc.dms.exception.DuplicateUserException;
 import com.dc.dms.intf.UserService;
 
 
@@ -36,7 +37,7 @@ public class UserServiceImplTest {
 
 		try {
 			userService.registerUser(user1);
-		} catch (DMSException e) {
+		} catch (DMSException | DuplicateUserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

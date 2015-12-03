@@ -8,8 +8,10 @@ import com.dc.dms.exception.DMSException;
 
 public interface OrganizationService {
 	
-	public Organization createOrUpdateOrginzation(Organization org) throws DMSException;
+	public Organization upsertOrginzation(Organization org) throws DMSException;
 	
 	public List<Organization> getUserOrganizations(BigInteger userId) throws DMSException;
+	
+	public Organization getOrganizationDetail(BigInteger orgId) throws DMSException;
 
 }

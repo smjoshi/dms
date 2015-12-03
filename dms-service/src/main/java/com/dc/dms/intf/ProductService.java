@@ -8,7 +8,7 @@ import com.dc.dms.exception.DMSException;
 
 public interface ProductService {
 	
-	public Product createOrUpdateProduct(Product product) throws DMSException;
+	public Product upsertProduct(Product product) throws DMSException;
 	
 	public List<Product> getProductsByOrg(BigInteger orgId) throws DMSException;
 	

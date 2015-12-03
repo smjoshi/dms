@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao = null;
 
 	@Override
-	public Product createOrUpdateProduct(Product product) throws DMSException {
+	public Product upsertProduct(Product product) throws DMSException {
 		Product processedProduct = null;
 		if (product != null){
 			ProductEntity productEntity = prepareProductEntity(product);
@@ -35,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
 				processedProduct = populateProductModel(productEntity);
 			} catch (DMSDaoException e) {
 				e.printStackTrace();
+				throw new DMSException(203, e.getMessage());
 			}
 		}
 		return processedProduct;
