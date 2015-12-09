@@ -95,9 +95,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private User populateUserModel(UserEntity userEntity) {
-		User user = new User();
+		User user = null;
 
 		if (userEntity != null) {
+			user = new User();
+			
 			user.setEmail(userEntity.getEmail());
 			user.setFirstName(userEntity.getFirstName());
 			user.setLastName(userEntity.getLastName());

@@ -16,45 +16,41 @@
 		<db-dao-version>1.0-SNAPSHOT</db-dao-version>
 	</properties>
 
-
-
 	<dependencies>
 		<dependency>
 			<groupId>com.dc.dms</groupId>
 			<artifactId>dms-db-dao</artifactId>
 			<version>${db-dao-version}</version>
-		</dependency>
-
-
-
-		<dependency>
+	</dependency>
+	<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-
-
-		<dependency>
+	</dependency>
+	<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit-version}</version>
-			<scope>test</scope>
-		</dependency>
-
-
+	</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 			<scope>test</scope>
-		</dependency>
+	</dependency>	
+	<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.mockito</groupId>
+		<artifactId>mockito-all</artifactId>
+		<version>1.10.19</version>
+	</dependency>
 
-	</dependencies>
+
+
+  </dependencies>
 </project>
