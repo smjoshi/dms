@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.OrganizationDao;
@@ -13,6 +14,8 @@ import com.dc.dms.entity.OrgEntity;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.OrganizationService;
 
+
+@Service("orgService")
 public class OrganizationServiceImpl implements OrganizationService {
 	
 	@Autowired

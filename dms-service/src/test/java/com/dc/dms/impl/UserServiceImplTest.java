@@ -1,19 +1,19 @@
 package com.dc.dms.impl;
 
+import static org.junit.Assert.assertThat;
+
 import java.math.BigInteger;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -48,8 +48,6 @@ public class UserServiceImplTest {
 		MockitoAnnotations.initMocks(this);
 	}
 	
-	@Rule
-	public ExpectedException exception = ExpectedException.none();
 
 	@Test
 	public void testRegisterUser_withnoException() {
@@ -84,7 +82,7 @@ public class UserServiceImplTest {
 	
 	
 	
-	@Test(expected = DuplicateUserException.class)
+	@Test
 	public void testRegisterUser_with_DuplicateUserException() {
 		
 		try {
@@ -97,13 +95,12 @@ public class UserServiceImplTest {
 
 			
 			User returnedUser = userService.registerUser(user);
-		} catch (DMSDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		
+		} catch (Exception e) {
+			assertThat(e, CoreMatchers.instanceOf(DuplicateUserException.class));
+			//assertThat(e, IsI(e instanceof DuplicateUserException));
+		}
+		
 		
 		
 	}
