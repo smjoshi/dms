@@ -52,7 +52,7 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 	 * @see com.dc.dms.intf.ProductDocConfService#getProductDocConfiguration(java.math.BigInteger)
 	 */
 	@Override
-	public List<ProductDocConfiguration> getProductDocConfiguration(
+	public List<ProductDocConfiguration> getProductDocConfigurations(
 			BigInteger productId) throws DMSException {
 		
 		List<ProductDocConfEntity> docConfs = productDocConfDao.getProductDocConfigurations(productId);

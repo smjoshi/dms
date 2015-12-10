@@ -18,6 +18,7 @@ public class ProductDocConfiguration implements Serializable {
 	protected boolean isMandatory;
 	protected boolean isMultipleItemAllowed;
 	protected String groupId;
+	protected String description;
 
 	public BigInteger getProductId() {
 		return productId;
@@ -65,6 +66,14 @@ public class ProductDocConfiguration implements Serializable {
 
 	public void setGroupId(String groupId) {
 		this.groupId = groupId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
