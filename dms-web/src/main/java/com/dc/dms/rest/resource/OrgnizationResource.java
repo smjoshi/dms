@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,8 @@ public class OrgnizationResource {
 	
 	@GET
 	@Path("/{orgId}")
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Organization getOrgDetails(BigInteger orgId) throws ApplicationRestException{
+	public Organization getOrgDetails(@QueryParam("orgId") BigInteger orgId) throws ApplicationRestException{
 		Organization org = null;
 		try {
 			org = orgService.getOrganizationDetail(orgId);
@@ -43,10 +43,9 @@ public class OrgnizationResource {
 	}
 	
 	@GET
-	@Path("/user/{orgId}")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/user/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Organization> getOrganizations(BigInteger userId) throws ApplicationRestException{
+	public List<Organization> getOrganizations(@QueryParam("userId") BigInteger userId) throws ApplicationRestException{
 		List<Organization> orgs = null;
 		try {
 			orgs = orgService.getUserOrganizations(userId);
@@ -62,7 +61,6 @@ public class OrgnizationResource {
 	}
 	
 	@POST
-	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Organization addOrUpdateOrganization(Organization org) throws ApplicationRestException{
@@ -77,7 +75,6 @@ public class OrgnizationResource {
 	}
 	
 	@DELETE
-	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public void deleteOranization(BigInteger orgId) throws ApplicationRestException{

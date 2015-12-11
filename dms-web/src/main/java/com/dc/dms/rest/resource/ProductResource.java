@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ProductResource {
 	@GET
 	@Path("/org/{orgId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> getAllProducts(BigInteger orgId){
+	public List<Product> getAllProducts(@QueryParam("orgId") BigInteger orgId){
 		
 		List<Product> productList = null;
 		
@@ -54,7 +55,7 @@ public class ProductResource {
 	@GET
 	@Path("/{productId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Product getProduct(BigInteger productId){
+	public Product getProduct(@QueryParam("productId") BigInteger productId){
 		
 		Product product = null;
 		throw new UnsupportedOperationException(" getProduct - Operation not yet implemented");
@@ -66,7 +67,6 @@ public class ProductResource {
 	 * @return
 	 */
 	@POST
-	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Product addOrUpdateProduct(Product product) throws ApplicationRestException{
@@ -87,7 +87,6 @@ public class ProductResource {
 	 * @return
 	 */
 	@DELETE
-	@Path("/{productId}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public boolean deleteProduct(Product product){

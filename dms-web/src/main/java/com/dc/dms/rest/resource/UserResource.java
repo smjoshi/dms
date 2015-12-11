@@ -53,7 +53,7 @@ public class UserResource {
 	 * @throws ApplicationRestException
 	 */
 	@POST
-	@Path("/")
+	@Path("/register")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public User registerUser(User user) throws ApplicationRestException {

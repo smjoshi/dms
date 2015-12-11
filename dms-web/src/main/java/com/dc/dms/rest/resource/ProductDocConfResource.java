@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,14 @@ public class ProductDocConfResource {
 	 * @return
 	 */
 	@GET
-	@Path("/{productId}")
+	@Path("/product/{productId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductDocConfiguration> getAllProductDocConfig(BigInteger productId) throws ApplicationRestException {
+	public List<ProductDocConfiguration> getAllProductDocConfig(@QueryParam("productId") BigInteger productId) throws ApplicationRestException {
 
 		List<ProductDocConfiguration> confList = null;
 
 		try {
-			confList = confService.getProductDocConfiguration(productId);
+			confList = confService.getProductDocConfigurations(productId);
 		} catch (DMSException e) {
 			e.printStackTrace();
 			confList = null;
@@ -54,7 +55,7 @@ public class ProductDocConfResource {
 	@GET
 	@Path("/{docConfigId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ProductDocConfiguration getProductConfig(BigInteger docConfigId) throws ApplicationRestException {
+	public ProductDocConfiguration getProductDocConfig(@QueryParam("docConfigId") BigInteger docConfigId) throws ApplicationRestException {
 
 		ProductDocConfiguration docConfig = null;
 		throw new UnsupportedOperationException();
@@ -65,7 +66,6 @@ public class ProductDocConfResource {
 	 * @return
 	 */
 	@POST
-	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ProductDocConfiguration addOrUpdateProduct(ProductDocConfiguration docConfig)
@@ -86,8 +86,7 @@ public class ProductDocConfResource {
 	 * @param product
 	 * @return
 	 */
-	@DELETE
-	@Path("/{productConfId}")
+	@DELETE	
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public boolean deleteProductDocConfig(ProductDocConfiguration docConfig) throws ApplicationRestException {
