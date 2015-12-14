@@ -61,6 +61,7 @@ public class OrgnizationResource {
 	}
 	
 	@POST
+	@Path("/org")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Organization addOrUpdateOrganization(Organization org) throws ApplicationRestException{

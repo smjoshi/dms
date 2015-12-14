@@ -28,7 +28,7 @@ public class LoginController {
 			@RequestParam(value = "password", required = true) String password) {
 
 		ModelAndView mv = new ModelAndView();
-		String resourcePath = "/users/json/getUser";
+		String resourcePath = "/users/login";
 
 		User user = new User();
 		user.setEmail(email);
@@ -61,8 +61,8 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		String homeView = "homePage";
 
-		String createUserResource = "/users/json/createUser";
-		String createOrgResource = "/org/json/createOrg";
+		String createUserResource = "/users/register";
+		String createOrgResource = "/orgs/org";
 
 		Response userResponse = RestUtils.callPostJsonRestService(
 				createUserResource, user, User.class);
