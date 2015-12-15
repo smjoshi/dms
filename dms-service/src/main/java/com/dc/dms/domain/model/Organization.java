@@ -5,6 +5,7 @@ import java.math.BigInteger;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -19,16 +20,16 @@ public class Organization implements Serializable {
 	 */
 	private static final long serialVersionUID = -505445923066279215L;
 	
-	@XmlElementRef(name="orgId")
+	@XmlElement(name="orgId")
 	public BigInteger orgId;
 	
-	@XmlElementRef(name="orgName")
+	@XmlElement(name="orgName")
 	public String orgName;
 	
-	@XmlElementRef(name="orgType")
+	@XmlElement(name="orgType")
 	public String orgType;
 	
-	@XmlElementRef(name="userId")
+	@XmlElement(name="userId")
 	public BigInteger userId;
 
 	public BigInteger getOrgId() {
