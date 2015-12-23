@@ -27,6 +27,8 @@ public class LoginController {
 			@RequestParam(value = "email", required = true) String email,
 			@RequestParam(value = "password", required = true) String password) {
 
+		String homeView = "home";
+		
 		ModelAndView mv = new ModelAndView();
 		String resourcePath = "/users/login";
 
@@ -38,7 +40,7 @@ public class LoginController {
 				user, User.class);
 		
 		if (response.getStatus() == 200){
-			mv.setViewName("homeView");
+			mv.setViewName(homeView);
 		}else if (response.getStatus() == 204) {
 			mv.getModel().put("message",
 					"Credentials are not correct, if not a member , SIGN UP!!");
@@ -59,7 +61,7 @@ public class LoginController {
 	public ModelAndView registerUser(@ModelAttribute("form-signup") User user) {
 
 		ModelAndView mv = new ModelAndView();
-		String homeView = "homePage";
+		String homeView = "home";
 
 		String createUserResource = "/users/register";
 		String createOrgResource = "/orgs/org";

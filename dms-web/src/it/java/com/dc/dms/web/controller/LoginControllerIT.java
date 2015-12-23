@@ -12,7 +12,7 @@ public class LoginControllerIT {
 	}
 
 	@Test
-	public void testRegisterUserITCase() {
+	public void testRegisterUserITCase() { 
 		fail("Not yet implemented");
 	}
 

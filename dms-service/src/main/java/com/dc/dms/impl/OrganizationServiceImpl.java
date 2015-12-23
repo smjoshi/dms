@@ -49,7 +49,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 		if (org != null){
 			OrgEntity orgEntity = prepareOrgEntity(org);
 			try {
-				if (orgEntity == null){
+				if (orgEntity.getOrgId() == null){
 					orgEntity = orgDao.create(orgEntity);
 				}else
 				{

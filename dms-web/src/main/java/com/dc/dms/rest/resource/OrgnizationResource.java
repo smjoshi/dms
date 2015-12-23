@@ -78,7 +78,7 @@ public class OrgnizationResource {
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void deleteOranization(BigInteger orgId) throws ApplicationRestException{
+	public void deleteOrganization(BigInteger orgId) throws ApplicationRestException{
 		throw new UnsupportedOperationException();
 	}
 	

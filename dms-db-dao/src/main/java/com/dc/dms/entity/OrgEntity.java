@@ -12,7 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "oranization")
+@Table(name = "organization")
 @NamedQuery(name = "OrgEntity.findAll", query = "SELECT o FROM OrgEntity o")
 public class OrgEntity implements Serializable {
 	
