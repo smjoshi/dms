@@ -31,6 +31,30 @@
     <![endif]-->
   </head>
 <body>
+    <div class="container">
+    	<form clas="form-horizontal" >
+			<div>
+				<img alt="" src="../../resources/images/manage_product.png">
+				<h3><u>Add Product</u></h3>
+			</div>
+		
+			<div class="form-group">
+    			<label for="productname" class="col-sm-2 control-label">Product Name</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="productName" placeholder="Product Name">
+			    </div>
+  			</div>
+			  <div class="form-group">
+			    <label for="description" class="col-sm-2 control-label">Description</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="description" placeholder="Description">
+			    </div>
+			  </div>
+			  
+			  <input type="hidden" name="orgId" value="">
+		
+	</form>
+    </div>
 	
 	
 	

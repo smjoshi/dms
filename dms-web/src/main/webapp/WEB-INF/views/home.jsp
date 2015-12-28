@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,10 +30,31 @@
 
     <!-- Custom styles for this template -->
     <link href="../../resources/css/app/carousel.css" rel="stylesheet">
+    
+    <script type="text/javascript">
+    
+    	function submitForm (detailsRequested){
+    		
+    		var homeform = document.getElementById("homeForm");
+    		
+    		if (detailsRequested == '1'){   // org details
+    			homeform.action = '/org'
+    		}else if(detailsRequested == '2'){  // product details
+    			homeform.action = '/dms-web/web/users/product'
+    		}else if(detailsRequested == '3'){  // product document details
+    			homeform.action = '/product/doc'
+    		}
+    		
+    		homeform.submit();
+    	}
+    
+    </script>
+    
   </head>
 <!-- NAVBAR
 ================================================== -->
   <body>
+   <form action="" id="homeForm" method="post">
     <div class="navbar-wrapper">
       <div class="container">
 
@@ -136,17 +158,17 @@
         <div class="col-lg-4">
           <img class="img-circle" src="../../resources/images/manage_store.png" alt="Manage Store image" width="140" height="140">
           <h2>Manage Store</h2>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-default" href="#" role="button" onclick="submitForm(1)">View store details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="../../resources/images/manage_product.png" alt="Manage Product image" width="140" height="140">
           <h2>Manage Product</h2>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-default" href="#" role="button" onclick="submitForm(2)">View product details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="../../resources/images/manage_docs.jpg" alt="Manage documents image" width="140" height="140">
           <h2>Manage Documents</h2>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-default" href="#" role="button" onclick="submitForm(3)">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
@@ -159,6 +181,7 @@
 
     </div><!-- /.container -->
 
+	<input type="hidden" name="userId" value="${user.userId}">
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -170,5 +193,6 @@
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    </form>
   </body>
 </html>

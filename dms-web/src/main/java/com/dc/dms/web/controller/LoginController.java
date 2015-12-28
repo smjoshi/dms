@@ -41,6 +41,9 @@ public class LoginController {
 		
 		if (response.getStatus() == 200){
 			mv.setViewName(homeView);
+			
+			User returnedUser = response.readEntity(User.class);
+			mv.getModel().put("user", returnedUser);
 		}else if (response.getStatus() == 204) {
 			mv.getModel().put("message",
 					"Credentials are not correct, if not a member , SIGN UP!!");

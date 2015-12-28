@@ -4,6 +4,8 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dc.dms.domain.model.Product;
@@ -13,9 +15,11 @@ import com.dc.dms.web.utils.RestUtils;
 @Controller
 public class ManageProductController {
 	
+	
+	@RequestMapping(value = "/productRequest", method = RequestMethod.GET)
 	public ModelAndView addOrUpdateProductView(){
 		
-		ModelAndView mv = new ModelAndView("product");
+		ModelAndView mv = new ModelAndView("addProductDetails");
 		return mv;
 		
 	}
