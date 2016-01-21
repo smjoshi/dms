@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="PRODUCT")
+@Table(name="product")
 @NamedQuery(name="ProductEntity.findAll", query="SELECT p FROM ProductEntity p")
 public class ProductEntity implements Serializable {
 	

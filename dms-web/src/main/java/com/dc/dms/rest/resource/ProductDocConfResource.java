@@ -66,6 +66,25 @@ public class ProductDocConfResource {
 	 * @return
 	 */
 	@POST
+	@Path("/list")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProductDocConfiguration> addOrUpdateProductConfs(List<ProductDocConfiguration> confs)
+			throws ApplicationRestException {
+
+		List<ProductDocConfiguration> dbDocConfig = null;
+		try {
+			dbDocConfig = confService.upsertProductDocConfigurationsList(confs);
+		} catch (DMSException e) {
+			e.printStackTrace();
+			dbDocConfig = null;
+			throw new ApplicationRestException();
+		}
+		return dbDocConfig;
+	}
+	
+	
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ProductDocConfiguration addOrUpdateProduct(ProductDocConfiguration docConfig)
@@ -81,6 +100,8 @@ public class ProductDocConfResource {
 		}
 		return dbDocConfig;
 	}
+	
+	
 
 	/**
 	 * @param product

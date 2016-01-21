@@ -54,7 +54,7 @@
 <!-- NAVBAR
 ================================================== -->
   <body>
-   <form action="" id="homeForm" method="post">
+   <form action="" id="homeForm" method="get">
     <div class="navbar-wrapper">
       <div class="container">
 

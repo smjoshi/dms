@@ -5,7 +5,7 @@ import java.math.BigInteger;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
@@ -19,20 +19,20 @@ public class Product implements Serializable {
 	 */
 	private static final long serialVersionUID = -1877464203488457714L;
 	
-	@XmlElementRef(name="productId")
+	@XmlElement(name="productId")
 	protected BigInteger productId;
 	
 	
-	@XmlElementRef(name="productName")
+	@XmlElement(name="productName")
 	protected String productName;
 	
-	@XmlElementRef(name="description")
+	@XmlElement(name="description")
 	private String  description;
 	
-	@XmlElementRef(name="productCode")
+	@XmlElement(name="productCode")
 	protected String productCode;
 	
-	@XmlElementRef(name="orgId")
+	@XmlElement(name="orgId")
 	protected BigInteger orgId;
 
 	public BigInteger getProductId() {

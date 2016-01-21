@@ -55,5 +55,8 @@ public class ProductDocConfDaoImpl extends AbstractDmsDao implements
 
 		return docConfs;
 	}
+	
+	
+	
 
 }

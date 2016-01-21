@@ -2,6 +2,8 @@ package com.dc.dms.domain.model;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -38,6 +40,9 @@ public class User implements Serializable{
 	
 	@XmlElement(name="userId")
 	private BigInteger userId;
+	
+	
+	private List<Organization> organizations = new ArrayList<Organization>();
 	
 	
 	/**
@@ -113,8 +118,16 @@ public class User implements Serializable{
 	public void setOrgType(String orgType) {
 		this.orgType = orgType;
 	}
-	
-	
-	
+
+
+	public List<Organization> getOrganizations() {
+		return organizations;
+	}
+
+
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
+	}
+
 
 }

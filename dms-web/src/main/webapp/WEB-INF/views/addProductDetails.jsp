@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE html>
 <html>
 <html lang="en">
   <head>
@@ -32,27 +32,34 @@
   </head>
 <body>
     <div class="container">
-    	<form clas="form-horizontal" >
-			<div>
-				<img alt="" src="../../resources/images/manage_product.png">
-				<h3><u>Add Product</u></h3>
+    	<form class="form-horizontal" name="productForm"   action="${pageContext.request.contextPath}/web/users/product" method="post">
+    	  <fieldset>
+			<div class="row">
+				   <div class="col-sm-2"> 
+				   		<img alt="" src="../../resources/images/manage_product.png" class="img-thumbnail" width="80" height="80">
+				   </div>	
+				   <div class="col-sm-10" >
+				   		<h3>Add Product</h3>
+				   </div>
 			</div>
-		
-			<div class="form-group">
+			
+			<div class="form-group control-group">
     			<label for="productname" class="col-sm-2 control-label">Product Name</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="productName" placeholder="Product Name">
+			    <div class="col-sm-10 controls">
+			      <input type="text" class="form-control" name="productName" placeholder="Product Name">
 			    </div>
   			</div>
-			  <div class="form-group">
+  			
+			  <div class="form-group control-group">
 			    <label for="description" class="col-sm-2 control-label">Description</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="description" placeholder="Description">
+			      <input type="text" class="form-control" name="description" placeholder="Description">
 			    </div>
 			  </div>
-			  
-			  <input type="hidden" name="orgId" value="">
-		
+			 
+			  <input type="hidden" name="orgId" value="${user.organizations[0].orgId }" class="form-control">
+			  <button type="submit" class="btn">Submit</button>
+		</fieldset>
 	</form>
     </div>
 	

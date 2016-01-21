@@ -67,18 +67,19 @@ public class ProductResource {
 	 * @return
 	 */
 	@POST
+	@Path("/product")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Product addOrUpdateProduct(Product product) throws ApplicationRestException{
 		
 		Product dbReturnedProduct = null;
-//		try {
-//			//dbReturnedProduct = productService.createOrUpdateProduct(product);
-//		} catch (DMSException e) {
-//			e.printStackTrace();
-//			dbReturnedProduct = null;
-//			throw new ApplicationRestException();
-//		}
+		try {
+		     dbReturnedProduct = productService.upsertProduct(product);
+		} catch (DMSException e) {
+			e.printStackTrace();
+			dbReturnedProduct = null;
+			throw new ApplicationRestException();
+		}
 		return dbReturnedProduct;
 	}
 	

@@ -16,5 +16,7 @@ public interface ProductDocConfService {
 	
 	public List<ProductDocConfiguration> getProductDocConfigurations(BigInteger productId) throws DMSException;
 	
+	public List<ProductDocConfiguration> upsertProductDocConfigurationsList(List<ProductDocConfiguration> confs) throws DMSException;
+	
 
 }

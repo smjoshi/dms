@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -37,27 +38,31 @@
 	</div>
 	
 	<div>
-		<a href="http://localhost:8080/dms-web/web/productRequest">Add Product</a>
+		<a href="http://localhost:8080/dms-web/web/users/productRequest">Add Product</a>
 	</div>
 	
 	<div>
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>#</th>
+					<th>Product Id</th>
 					<th>Product Name</th>
 					<th>Description</th>
 					<th>Product Code</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Sedan car</td>
-					<td>Passenger Car</td>
-					<td>PSG1</td>
-				</tr>
-			</tbody>
+			<c:if test="${not empty products }">	
+				<tbody>
+					<c:forEach items="${products}" var="product">
+						<tr>
+							<td>${product.productId}</td>
+							<td>${product.productName}</td>
+							<td>${product.description}</td>
+							<td>${product.productCode}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</c:if>
 		</table>
 	</div>
 	</form>

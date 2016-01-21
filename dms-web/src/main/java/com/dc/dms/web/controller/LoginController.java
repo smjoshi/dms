@@ -1,5 +1,8 @@
 package com.dc.dms.web.controller;
 
+import java.util.List;
+
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Controller;
@@ -7,15 +10,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.dc.dms.domain.model.Organization;
 import com.dc.dms.domain.model.User;
 import com.dc.dms.web.utils.RestUtils;
 
 @Controller
+@SessionAttributes("user")
 public class LoginController {
 
+	private static String USER_RESOURCE = "/users/login";
+	private static String USER_ORG_RESOURCE = "/orgs/user/{userId}";
+	private String HOME_VIEW = "home";
+	
 	@RequestMapping(value = "/loginRequest", method = RequestMethod.GET)
 	public ModelAndView getLoginView() {
 		ModelAndView mv = new ModelAndView("login");
@@ -27,28 +38,35 @@ public class LoginController {
 			@RequestParam(value = "email", required = true) String email,
 			@RequestParam(value = "password", required = true) String password) {
 
-		String homeView = "home";
-		
 		ModelAndView mv = new ModelAndView();
-		String resourcePath = "/users/login";
 
 		User user = new User();
 		user.setEmail(email);
 		user.setPassword(password);
 
-		Response response = RestUtils.callPostJsonRestService(resourcePath,
-				user, User.class);
+		User returnedUser = getUserDetails(user);
 		
-		if (response.getStatus() == 200){
-			mv.setViewName(homeView);
+		if (returnedUser != null){
 			
-			User returnedUser = response.readEntity(User.class);
+			//Get user Organizations
+			List<Organization> userOrgs = getUserOrganizations(returnedUser);
+			returnedUser.setOrganizations(userOrgs);
+			
+			mv.setViewName(HOME_VIEW);
+			
+			//This will add user in session as well
+			mv.getModelMap().addAttribute("user", returnedUser);
 			mv.getModel().put("user", returnedUser);
-		}else if (response.getStatus() == 204) {
+
+			
+		}else{
+			//User not found with given credentials
+			
 			mv.getModel().put("message",
-					"Credentials are not correct, if not a member , SIGN UP!!");
+					"User does not exists, if not a member , SIGN UP!!");
 			mv.setViewName("login");
 		}
+		
 		return mv;
 	}
 
@@ -88,6 +106,7 @@ public class LoginController {
 
 			if (orgCreateRespose.getStatus() == 200) {
 				mv.setViewName(homeView);
+				createdUser.getOrganizations().add(userOrg);
 			} else {
 				mv.getModel().put("message", "Error while persisting Org");
 			}
@@ -97,9 +116,43 @@ public class LoginController {
 					"Credentials are not correct, if not a member , SIGN UP!!");
 			mv.setViewName("login");
 		}
-
+		mv.getModelMap().addAttribute("user", createdUser);
 		return mv;
 
+	}
+	
+	
+	
+	private User getUserDetails(User user){
+		
+		User returnedUser = null;
+		
+		Response response = RestUtils.callPostJsonRestService(USER_RESOURCE,
+				user, User.class);
+		
+		if (response.getStatus() == 200){
+			returnedUser = response.readEntity(User.class);
+		} 
+		
+		return returnedUser;
+	}
+	
+	
+	private List<Organization> getUserOrganizations(User user){
+		List<Organization> userOrgs = null;
+		
+		
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().path(USER_ORG_RESOURCE).build().expand(user.getUserId()).encode();
+		
+		String uri = uriComponents.getPath();
+		
+		Response response = RestUtils.callGetRestService(uri);
+		
+		if (response.getStatus() == 200){
+			userOrgs = response.readEntity(new GenericType<List<Organization>>(){});
+		} 
+		
+		return userOrgs;
 	}
 
 }

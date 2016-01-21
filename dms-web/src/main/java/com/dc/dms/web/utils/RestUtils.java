@@ -32,6 +32,8 @@ public class RestUtils {
 
 	public static Response callPostJsonRestService(String resourcePath,
 			Object requestObject, Object type) {
+		
+		
 		ClientConfig clientConfig = new ClientConfig();
 		clientConfig.register(JacksonFeature.class);
 
@@ -44,6 +46,22 @@ public class RestUtils {
 						MediaType.APPLICATION_JSON_TYPE));
 
 		return response;
+	}
+	
+	
+	public static Response callGetRestService(String resourcePath){
+		
+		ClientConfig clientConfig = new ClientConfig();
+		clientConfig.register(JacksonFeature.class);
+
+		Client client = ClientBuilder.newClient(clientConfig);
+
+		WebTarget target = client.target(rootContextURL).path(resourcePath);
+
+		Response response = target.request().get();
+
+		return response;
+		
 	}
 
 }

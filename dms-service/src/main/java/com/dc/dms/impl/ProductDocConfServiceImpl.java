@@ -60,6 +60,27 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 	}
 	
 	
+	@Override
+	public List<ProductDocConfiguration> upsertProductDocConfigurationsList(List<ProductDocConfiguration> confs)
+			throws DMSException {
+		
+		List<ProductDocConfiguration> processedConfs = new ArrayList();
+		
+		ProductDocConfiguration processedConf = null;
+		for(ProductDocConfiguration conf : confs){
+			
+			try {
+				processedConf = upsertProductDocConfiguration(conf);
+				processedConfs.add(processedConf);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return processedConfs;
+	}
 	
 	
 	/**
@@ -109,5 +130,7 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 		}
 		return confList;
 	}
+
+	
 
 }

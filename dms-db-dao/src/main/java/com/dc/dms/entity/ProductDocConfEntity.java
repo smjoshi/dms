@@ -12,7 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PRODUCT_DOC_CONF")
+@Table(name="product_doc_conf")
 @NamedQuery(name="ProductDocConfEntity.findAll", query = "SELECT pdc FROM ProductDocConfEntity pdc")
 public class ProductDocConfEntity implements Serializable {
 
