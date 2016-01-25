@@ -24,7 +24,7 @@ import com.dc.dms.web.utils.RestUtils;
 @SessionAttributes("user")
 public class HomeController {
 
-	private static String USER_PRODUCT_RESOURCE = "/product/org/{orgId}";
+	private static String USER_PRODUCT_RESOURCE = "/products/org/{orgId}";
 	String MANAGE_PRODUCT_VIEW = "manageProduct";
 	
 	

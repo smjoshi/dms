@@ -35,7 +35,7 @@
 
 	<div class="container">
 
-		<form class="form-signin" action="http://localhost:8080/dms-web/web/users/login" method="post">
+		<form class="form-signin" action="${pageContext.request.contextPath}/web/users/login" method="post">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<h3>${message}</h3>   
 			<label for="inputEmail" class="sr-only">Email address</label> 
@@ -47,7 +47,7 @@
 					Remember me
 				</label>
 			</div>
-			<div><a href='http://localhost:8080/dms-web/web/signUpRequest'>New to DMS? Sign Up </a></div>
+			<div><a href='${pageContext.request.contextPath}/web/signUpRequest'>New to DMS? Sign Up </a></div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign	in</button>
 			
 			

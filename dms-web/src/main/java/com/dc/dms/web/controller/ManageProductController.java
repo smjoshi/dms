@@ -120,21 +120,21 @@ public class ManageProductController {
 		frontImageConf.setProductId(pr.getProductId());
 		
 		leftImageConf.setDescription("Left side Image");
-		leftImageConf.setDocTypeCode("FRONTIMAGE");
+		leftImageConf.setDocTypeCode("RIGHTIMAGE");
 		leftImageConf.setGroupId(null);
 		leftImageConf.setMandatory(false);
 		leftImageConf.setMultipleItemAllowed(false);
 		leftImageConf.setProductId(pr.getProductId());
 		
 		rightImageConf.setDescription("Right side Image");
-		rightImageConf.setDocTypeCode("FRONTIMAGE");
+		rightImageConf.setDocTypeCode("BACKIMAGE");
 		rightImageConf.setGroupId(null);
 		rightImageConf.setMandatory(false);
 		rightImageConf.setMultipleItemAllowed(false);
 		rightImageConf.setProductId(pr.getProductId());
 		
 		backImageConf.setDescription("Back side Image");
-		backImageConf.setDocTypeCode("FRONTIMAGE");
+		backImageConf.setDocTypeCode("LEFTIMAGE");
 		backImageConf.setGroupId(null);
 		backImageConf.setMandatory(false);
 		backImageConf.setMultipleItemAllowed(false);

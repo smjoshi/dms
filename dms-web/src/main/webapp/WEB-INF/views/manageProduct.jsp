@@ -38,7 +38,7 @@
 	</div>
 	
 	<div>
-		<a href="http://localhost:8080/dms-web/web/users/productRequest">Add Product</a>
+		<a href="${pageContext.request.contextPath}/web/users/productRequest">Add Product</a>
 	</div>
 	
 	<div>

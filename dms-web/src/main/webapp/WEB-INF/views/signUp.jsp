@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container" >
-		<form class="form-signup" action="http://localhost:8080/dms-web/web/users/signUp" method="post">
+		<form class="form-signup" action="${pageContext.request.contextPath}/web/users/signUp" method="post">
 			<div class="form-group">
 				<label class="col-sm-2" control-label> First Name</label>
 				<div class="col-sm-10">

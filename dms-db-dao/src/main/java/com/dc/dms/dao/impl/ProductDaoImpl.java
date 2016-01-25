@@ -42,7 +42,7 @@ public class ProductDaoImpl extends AbstractDmsDao implements ProductDao {
 		List<ProductEntity> productList= null;
 
 		try {
-			String queryStr = "SELECT u FROM ProductEntity p where p.orgId = ?1";
+			String queryStr = "SELECT p FROM ProductEntity p where p.orgId = ?1";
 			TypedQuery<ProductEntity> query = entityManager.createQuery(queryStr,
 					ProductEntity.class);
 			query.setParameter(1, orgId);
