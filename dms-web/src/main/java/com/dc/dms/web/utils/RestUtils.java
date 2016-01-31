@@ -14,7 +14,8 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 
 public class RestUtils {
 
-	static String rootContextURL = "http://localhost:8080/dms-web/api/";
+	//static String apiRootContextURL = "http://localhost:8080/dms-web/api/";
+	static String apiRootContextURL = null;
 
 	public static Response callPostRestService(String resourceUrl, Form form) {
 		ClientConfig clientConfig = new ClientConfig();
@@ -39,7 +40,7 @@ public class RestUtils {
 
 		Client client = ClientBuilder.newClient(clientConfig);
 
-		WebTarget target = client.target(rootContextURL).path(resourcePath);
+		WebTarget target = client.target(apiRootContextURL).path(resourcePath);
 
 		Response response = target.request(MediaType.APPLICATION_JSON_TYPE)
 				.post(Entity.entity(requestObject,
@@ -56,12 +57,22 @@ public class RestUtils {
 
 		Client client = ClientBuilder.newClient(clientConfig);
 
-		WebTarget target = client.target(rootContextURL).path(resourcePath);
+		WebTarget target = client.target(apiRootContextURL).path(resourcePath);
 
 		Response response = target.request().get();
 
 		return response;
 		
 	}
+
+	public static String getApiRootContextURL() {
+		return apiRootContextURL;
+	}
+
+	public static void setApiRootContextURL(String apiRootContextURL) {
+		RestUtils.apiRootContextURL = apiRootContextURL;
+	}
+	
+	
 
 }

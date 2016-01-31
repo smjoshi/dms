@@ -5,13 +5,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-
+	
 	<!-- Bootstrap the root application context as usual using ContextLoaderListener -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-
+	
 	<context-param>
 		<param-name>contextClass</param-name>
 		<param-value>
@@ -24,16 +23,16 @@
 		<param-value>
 		     com.dc.dms.config.DMSServiceConfig
 		     com.dc.dms.config.DatabaseJpaConfig
+		     
 		</param-value>
 	</context-param>
-
-
-
+	
+	
 	
 	<!-- Spring dispatcher servlet configuration  -->
 	
 	<servlet>
-        <servlet-name>DMSWeb</servlet-name>
+        <servlet-name>dms-web</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
         <init-param>
@@ -42,7 +41,10 @@
         </init-param>
         <init-param>
         	<param-name>contextConfigLocation</param-name>
-        	<param-value>com.dc.dms.config.WebConfig</param-value>
+        	<param-value>
+        		com.dc.dms.config.ApplicationConfig 
+        		com.dc.dms.config.WebConfig
+        	</param-value>
         </init-param>
         
         <load-on-startup>1</load-on-startup>
@@ -63,7 +65,7 @@
 
 
 	<servlet-mapping>
-        <servlet-name>DMSWeb</servlet-name>
+        <servlet-name>dms-web</servlet-name>
         <url-pattern>/web/*</url-pattern>
     </servlet-mapping>
 
@@ -73,7 +75,10 @@
 		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
 
+	
 	<!--TODO: Hook into spring security -->
+
+
 
 
 </web-app>

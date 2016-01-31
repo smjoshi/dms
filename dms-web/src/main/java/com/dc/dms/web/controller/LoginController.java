@@ -26,7 +26,7 @@ public class LoginController {
 	private static String USER_RESOURCE = "/users/login";
 	private static String USER_ORG_RESOURCE = "/orgs/user/{userId}";
 	private String HOME_VIEW = "home";
-	
+
 	@RequestMapping(value = "/loginRequest", method = RequestMethod.GET)
 	public ModelAndView getLoginView() {
 		ModelAndView mv = new ModelAndView("login");
@@ -34,8 +34,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/users/login", method = RequestMethod.POST)
-	public ModelAndView getUserBuyLogin(
-			@RequestParam(value = "email", required = true) String email,
+	public ModelAndView getUserBuyLogin(@RequestParam(value = "email", required = true) String email,
 			@RequestParam(value = "password", required = true) String password) {
 
 		ModelAndView mv = new ModelAndView();
@@ -45,28 +44,26 @@ public class LoginController {
 		user.setPassword(password);
 
 		User returnedUser = getUserDetails(user);
-		
-		if (returnedUser != null){
-			
-			//Get user Organizations
+
+		if (returnedUser != null) {
+
+			// Get user Organizations
 			List<Organization> userOrgs = getUserOrganizations(returnedUser);
 			returnedUser.setOrganizations(userOrgs);
-			
+
 			mv.setViewName(HOME_VIEW);
-			
-			//This will add user in session as well
+
+			// This will add user in session as well
 			mv.getModelMap().addAttribute("user", returnedUser);
 			mv.getModel().put("user", returnedUser);
 
-			
-		}else{
-			//User not found with given credentials
-			
-			mv.getModel().put("message",
-					"User does not exists, if not a member , SIGN UP!!");
+		} else {
+			// User not found with given credentials
+
+			mv.getModel().put("message", "User does not exists, if not a member , SIGN UP!!");
 			mv.setViewName("login");
 		}
-		
+
 		return mv;
 	}
 
@@ -87,8 +84,7 @@ public class LoginController {
 		String createUserResource = "/users/register";
 		String createOrgResource = "/orgs/org";
 
-		Response userResponse = RestUtils.callPostJsonRestService(
-				createUserResource, user, User.class);
+		Response userResponse = RestUtils.callPostJsonRestService(createUserResource, user, User.class);
 
 		User createdUser = null;
 		if (userResponse.getStatus() == 200) {
@@ -101,8 +97,8 @@ public class LoginController {
 			userOrg.setOrgType(user.getOrgType());
 			userOrg.setUserId(createdUser.getUserId());
 
-			Response orgCreateRespose = RestUtils.callPostJsonRestService(
-					createOrgResource, userOrg, Organization.class);
+			Response orgCreateRespose = RestUtils.callPostJsonRestService(createOrgResource, userOrg,
+					Organization.class);
 
 			if (orgCreateRespose.getStatus() == 200) {
 				mv.setViewName(homeView);
@@ -112,46 +108,42 @@ public class LoginController {
 			}
 
 		} else {
-			mv.getModel().put("message",
-					"Credentials are not correct, if not a member , SIGN UP!!");
+			mv.getModel().put("message", "Credentials are not correct, if not a member , SIGN UP!!");
 			mv.setViewName("login");
 		}
 		mv.getModelMap().addAttribute("user", createdUser);
 		return mv;
 
 	}
-	
-	
-	
-	private User getUserDetails(User user){
-		
+
+	private User getUserDetails(User user) {
+
 		User returnedUser = null;
-		
-		Response response = RestUtils.callPostJsonRestService(USER_RESOURCE,
-				user, User.class);
-		
-		if (response.getStatus() == 200){
+
+		Response response = RestUtils.callPostJsonRestService(USER_RESOURCE, user, User.class);
+
+		if (response.getStatus() == 200) {
 			returnedUser = response.readEntity(User.class);
-		} 
-		
+		}
+
 		return returnedUser;
 	}
-	
-	
-	private List<Organization> getUserOrganizations(User user){
+
+	private List<Organization> getUserOrganizations(User user) {
 		List<Organization> userOrgs = null;
-		
-		
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().path(USER_ORG_RESOURCE).build().expand(user.getUserId()).encode();
-		
+
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().path(USER_ORG_RESOURCE).build()
+				.expand(user.getUserId()).encode();
+
 		String uri = uriComponents.getPath();
-		
+
 		Response response = RestUtils.callGetRestService(uri);
-		
-		if (response.getStatus() == 200){
-			userOrgs = response.readEntity(new GenericType<List<Organization>>(){});
-		} 
-		
+
+		if (response.getStatus() == 200) {
+			userOrgs = response.readEntity(new GenericType<List<Organization>>() {
+			});
+		}
+
 		return userOrgs;
 	}
 
