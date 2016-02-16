@@ -1,0 +1,40 @@
+
+var productConf = [
+		{
+			"productId" : 1,
+			"docConfId" : 8,
+			"docTypeCode" : "FRONTIMAGE",
+			"isMandatory" : false,
+			"isMultipleItemAllowed" : false,
+			"groupId" : null,
+			"description" : null		
+		},
+		{
+			"productId" : 1,
+			"docConfId" : 9,
+			"docTypeCode" : "LEFTIMAGE",
+			"isMandatory" : false,
+			"isMultipleItemAllowed" : false,
+			"groupId" : null,
+			"description" : null		
+		},
+		{
+			"productId" : 1,
+			"docConfId" : 10,
+			"docTypeCode" : "RIGHTIMAGE",
+			"isMandatory" : false,
+			"isMultipleItemAllowed" : false,
+			"groupId" : null,
+			"description" : null		
+		},
+		{
+			"productId" : 1,
+			"docConfId" : 11,
+			"docTypeCode" : "BACKIMAGE",
+			"isMandatory" : false,
+			"isMultipleItemAllowed" : false,
+			"groupId" : null,
+			"description" : null		
+		}
+
+]

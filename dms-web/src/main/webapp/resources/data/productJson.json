@@ -1,0 +1,10 @@
+
+
+
+var product = {
+	"productId" : 1, 
+	"productName" : " Sedan Car",
+	"description" : " Sedan Car",
+	"productCode" : "PSNGRCAR",
+	"orgId" : 1
+}
