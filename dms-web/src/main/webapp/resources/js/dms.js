@@ -82,6 +82,7 @@ var MyDocForm = React.createClass({
 		 var files = this.refs.file.files;
 		 var file = files[0];
 		 alert("File to Uploaded : " + file.name);
+		 alert("File size : " + file.size);
 		// Loop through each of the selected files.
 //		for (var i = 0; i < files.length; i++) {
 //		  var file = files[i];
@@ -100,7 +101,7 @@ var MyDocForm = React.createClass({
 		var urlToPost = 'http://devdmsproducts01.s3.amazonaws.com';
 		$.ajax({
 			url: urlToPost,
-			type: 'POST',
+			type: 'PUT',
 			data: fd,
 			processData: false,
             contentType: false,
@@ -109,6 +110,7 @@ var MyDocForm = React.createClass({
 				console.log("Successful upload");
 			}.bind(this),
 			error: function(xhr, status, err){
+				console.log("Error while uploading the file");
 				console.log(urlToPost, status, err);
 			}.bind(this)
 		});
