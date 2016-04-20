@@ -13,7 +13,7 @@ var productConf = [
            			"description" : null		
            		},
            		{
-           			"productId" : 1,
+           			"productId" : 2,
            			"docConfId" : 9,
            			"docTypeCode" : "LEFTIMAGE",
            			"isMandatory" : false,
@@ -22,7 +22,7 @@ var productConf = [
            			"description" : null		
            		},
            		{
-           			"productId" : 1,
+           			"productId" : 3,
            			"docConfId" : 10,
            			"docTypeCode" : "RIGHTIMAGE",
            			"isMandatory" : false,
@@ -31,7 +31,7 @@ var productConf = [
            			"description" : null		
            		},
            		{
-           			"productId" : 1,
+           			"productId" : 4,
            			"docConfId" : 11,
            			"docTypeCode" : "BACKIMAGE",
            			"isMandatory" : false,
@@ -54,10 +54,24 @@ var MyDocForm = React.createClass({
 	  },
 	  
 	docFileChange: function(e){
-		alert(e);
+		console.log(e);
 		this.setState({
 			documentToUpload : e.target.value
 		})
+		
+		
+		var reader = new FileReader();
+		var imgFile = this.refs.file.files[0];
+		console.log(" Image to be uploaded : " + imgFile.name);
+		var imgCmponent =  this.refs.thmbImg ;
+		reader.onload = function(event) {
+			imgCmponent.src = event.target.result;
+			//console.log(event.target.result);
+		}
+		
+		reader.readAsDataURL(imgFile);
+		
+		
 	} , 
 	handleForm: function(e){
 		// make ajax call
@@ -66,46 +80,40 @@ var MyDocForm = React.createClass({
 		console.log(e);
 		console.log("Form State ==>" + this.state);
 		
-		
 		var awsData = {
-				key: this.state.awskey,
+				key: "dev/"+this.refs.file.files[0].name,
 				acl: this.state.awsacl,
 		}
 		
-		alert ("file to be uploaded : " + this.refs.file.files[0] );
+		console.log ("file to be uploaded : " + this.refs.file.files[0] );
+		console.log ("AWS Key " + awsData.key );
+		console.log ("AWS acl " + awsData.acl );
 		var fd = new FormData();
 
-		//fd.append( 'file', this.refs.file.files[0] );
+		// fd.append( 'file', this.refs.file.files[0] );
 		fd.append( 'acl', awsData.acl);
 		fd.append( 'key', awsData.key);
 		
-		 var files = this.refs.file.files;
-		 var file = files[0];
-		 alert("File to Uploaded : " + file.name);
-		 alert("File size : " + file.size);
-		// Loop through each of the selected files.
-//		for (var i = 0; i < files.length; i++) {
-//		  var file = files[i];
-//
-//		  // Check the file type.
-//		  if (file.type.match('image.*')) {
-//			// Add the file to the request.
-//			 // alert(" Image file name ==> " + file.name);
-			  fd.append('file', file, file.name);
-//		  }
-//		}
+		var files = this.refs.file.files;
+		var file = files[0];
 		
+		console.log("File to Uploaded : " + file.name);
+		console.log("File size : " + file.size);
 
+		fd.append('file', file, file.name);
+
+		console.log(fd.get(file.name));
+
+		// Ajax call
 		
-		//console.log("fileData ==>" + fd.file);
-		var urlToPost = 'http://devdmsproducts01.s3.amazonaws.com';
+		var urlToPost = 'http://devdmsproducts01.s3.amazonaws.com/';
 		$.ajax({
 			url: urlToPost,
-			type: 'PUT',
+			type: 'POST',
 			data: fd,
 			processData: false,
             contentType: false,
-            //file: file,
+            // file: file,
 			success: function(data){
 				console.log("Successful upload");
 			}.bind(this),
@@ -117,10 +125,10 @@ var MyDocForm = React.createClass({
 	},	
 	render: function(){
 		return (
-				<form ref="uploadForm" method="post" encType="multipart/form-data" onSubmit={this.handleForm} >
+				<form ref="uploadForm" method="POST" encType="multipart/form-data" onSubmit={this.handleForm} >
 				<div id="imgContainer" className="col-xs-6 col-md-3">
 					<a href="#" id="imgThumbnail" className="thumbnail">
-						<img src="http://www.kerry-beaches.com/images/skellig-michael-puffin-small.jpg" />
+						<img ref="thmbImg" src="http://www.kerry-beaches.com/images/skellig-michael-puffin-small.jpg" />
 					</a>
 					<p>
 						<input  type="hidden" name="key" value={this.state.awskey} />
@@ -157,9 +165,6 @@ var DocContainer = React.createClass({
 		}
 	
 });
-
-
-
 
 ReactDOM.render(
 	<DocContainer confData={productConf}/>,
