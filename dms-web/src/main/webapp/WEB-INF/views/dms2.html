@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="../../resources/css/app/common.css" rel="stylesheet" />
+
+<!--  -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://fb.me/react-0.14.7.js"></script>
+<script src="https://fb.me/react-dom-0.14.7.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div id="navbar" class="dmsgnav"></div>
+	<div id="dmscontainer" class="container">
+			<form action="http://devdmsproducts01.s3.amazonaws.com/" name="uploadForm" method="POST" encType="multipart/form-data">
+				<div id="imgContainer" class="col-xs-6 col-md-3">
+					<a href="#" id="imgThumbnail" class="thumbnail">
+						<img src="http://www.kerry-beaches.com/images/skellig-michael-puffin-small.jpg" />
+					</a>
+					<p>
+						<input  type="hidden" name="key" value="dev/FRONTIMAGE1.jpg" />
+						<input  type="hidden" name="acl" value="public-read-write" />
+						<input  type="file"   name="file"  id="imagefile" /> 
+						<input  type="submit" name="submit" value="submit" />		
+						<button type="button" class="btn btn-danger">Remove</button>
+					</p>       
+				</div>
+			</form>
+	</div>
+<!-- 	<script type="text/babel" src="../../resources/js/dms2.js"></script> -->
+<!-- 	<div id="content"></div> -->
+<!-- 	<script type="text/babel" src="../../resources/js/example.js"></script> -->
+	<!-- Include JS files for Bootstrap / Jquery in future angular js dependancies can be considered -->
+</body>
+
+</html>
