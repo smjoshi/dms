@@ -1,0 +1,9 @@
+-- Create table product_doc_details which will consist the product document instance information.
+
+CREATE TABLE `dms`.`product_doc_details` (
+  `product_doc_detail_id` BIGINT NOT NULL,
+  `product_id` BIGINT NOT NULL,
+  `product_doc_conf_id` BIGINT NOT NULL,
+  `doc_url` VARCHAR(100) NULL,
+  PRIMARY KEY (`product_doc_detail_id`))
+COMMENT = 'This table contains the actual product documentation instance details';

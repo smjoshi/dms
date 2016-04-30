@@ -49,7 +49,6 @@ var MyDocForm = React.createClass({
 	    	awskey: "test_"+this.props.confData.docTypeCode,
 	    	awsacl: "public-read-write",
 	    	documentToUpload: ''
-	    	
 	    	};
 	  },
 	  
@@ -147,11 +146,29 @@ var MyDocForm = React.createClass({
 
 var DocContainer = React.createClass({
 	
+	componentDidMount: function() {
+		
+		var urlToPost = "http://localhost:8080/api/details/product/"+this.props.productId;
+	    return {
+	    	    
+	    	$.ajax({
+	    	      url: urlToPost,
+	    	      dataType: 'json',
+	    	      cache: false,
+	    	      success: function(data) {
+	    	        this.setState({data: data});
+	    	      }.bind(this),
+	    	      error: function(xhr, status, err) {
+	    	        console.error(this.props.url, status, err.toString());
+	    	      }.bind(this)
+	    	    });
+	  },
+	
 	render: function(){
 	// rendering DOM updates
 		var formElements = [];
 		console.log(this.props.confData);
-		var confData = this.props.confData;
+		var confData = this.state.data;
 	
 		confData.forEach(function(conf){
 			formElements.push(<MyDocForm confData={conf} key={conf.docConfId} />);
@@ -167,7 +184,9 @@ var DocContainer = React.createClass({
 });
 
 ReactDOM.render(
-	<DocContainer confData={productConf}/>,
+	var product =  this.refs.productId ;
+	console.log("Product under consideration : " + product);
+	<DocContainer productId={product}/>,
 	document.getElementById('dmscontainer')
 );
 	

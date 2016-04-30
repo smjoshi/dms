@@ -33,8 +33,12 @@
 <body>
 	<form action="">
 	<div>
-		<img alt="" src="../../resources/images/manage_product.png">
-		<h3><u>Manage Products</u></h3>
+		<div>
+			<img alt="" src="https://s3-us-west-2.amazonaws.com/devdmsproducts01/global_default/manage_product.png">
+		</div>
+		<div>
+			<h3><u>Manage Products</u></h3>
+		</div>
 	</div>
 	
 	<div>
@@ -59,6 +63,9 @@
 							<td>${product.productName}</td>
 							<td>${product.description}</td>
 							<td>${product.productCode}</td>
+							<td><a href='#'><span class='glyphicon glyphicon-edit'></span></a></td>
+							<td><a href='#'><span class='glyphicon glyphicon-trash'></span></a></td>
+							<td><a href='#'><span class='glyphicon glyphicon-cog'></span></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

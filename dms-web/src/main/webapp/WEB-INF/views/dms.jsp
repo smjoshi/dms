@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -17,13 +18,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+
 	<div id="navbar" class="dmsgnav"></div>
 	<div id="dmscontainer" class="container"></div>
 	<script type="text/babel" src="../../resources/js/dms.js"></script>
 <!-- 	<div id="content"></div> -->
 <!-- 	<script type="text/babel" src="../../resources/js/example.js"></script> -->
 	<!-- Include JS files for Bootstrap / Jquery in future angular js dependancies can be considered -->
-
+	<input type="hidden" ref="productId" name="productId" value="" >
 </body>
 
 </html>

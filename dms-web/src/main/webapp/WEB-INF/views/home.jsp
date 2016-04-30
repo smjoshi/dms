@@ -106,7 +106,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="../../resources/images/car1.jpg" alt="First slide">
+          <img class="first-slide" src="https://s3-us-west-2.amazonaws.com/devdmsproducts01/global_default/poster.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Example headline.</h1>
@@ -156,17 +156,17 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="../../resources/images/manage_store.png" alt="Manage Store image" width="140" height="140">
+          <img class="img-circle" src="https://s3-us-west-2.amazonaws.com/devdmsproducts01/global_default/manage_store.png" alt="Manage Store image" width="140" height="140">
           <h2>Manage Store</h2>
           <p><a class="btn btn-default" href="#" role="button" onclick="submitForm(1)">View store details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="../../resources/images/manage_product.png" alt="Manage Product image" width="140" height="140">
+          <img class="img-circle" src="https://s3-us-west-2.amazonaws.com/devdmsproducts01/global_default/manage_product.png" alt="Manage Product image" width="140" height="140">
           <h2>Manage Product</h2>
           <p><a class="btn btn-default" href="#" role="button" onclick="submitForm(2)">View product details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="../../resources/images/manage_docs.jpg" alt="Manage documents image" width="140" height="140">
+          <img class="img-circle" src="https://s3-us-west-2.amazonaws.com/devdmsproducts01/global_default/manage_docs.jpg" alt="Manage documents image" width="140" height="140">
           <h2>Manage Documents</h2>
           <p><a class="btn btn-default" href="#" role="button" onclick="submitForm(3)">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
