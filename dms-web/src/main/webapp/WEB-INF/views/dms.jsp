@@ -5,7 +5,7 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link href="../../resources/css/app/common.css" rel="stylesheet" />
+<link href="../../../resources/css/app/common.css" rel="stylesheet" />
 
 <!--  -->
 <script
@@ -21,11 +21,12 @@
 
 	<div id="navbar" class="dmsgnav"></div>
 	<div id="dmscontainer" class="container"></div>
-	<script type="text/babel" src="../../resources/js/dms.js"></script>
+	
+	<input type="hidden" ref="productId" name="productId" value="${productId}" >
+	<script type="text/babel" src="../../../resources/js/dms.js"></script>
 <!-- 	<div id="content"></div> -->
 <!-- 	<script type="text/babel" src="../../resources/js/example.js"></script> -->
 	<!-- Include JS files for Bootstrap / Jquery in future angular js dependancies can be considered -->
-	<input type="hidden" ref="productId" name="productId" value="" >
 </body>
 
 </html>

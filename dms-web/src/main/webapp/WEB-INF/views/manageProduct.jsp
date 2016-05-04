@@ -63,9 +63,9 @@
 							<td>${product.productName}</td>
 							<td>${product.description}</td>
 							<td>${product.productCode}</td>
-							<td><a href='#'><span class='glyphicon glyphicon-edit'></span></a></td>
+							<td><a href='#' ><span class='glyphicon glyphicon-edit'></span></a></td>
 							<td><a href='#'><span class='glyphicon glyphicon-trash'></span></a></td>
-							<td><a href='#'><span class='glyphicon glyphicon-cog'></span></a></td>
+							<td><a href='#' onClick="getProductDocDetails(${product.productId})"><span class='glyphicon glyphicon-cog'></span></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -75,4 +75,14 @@
 	</form>
 	
 </body>
+<SCRIPT>
+
+	function getProductDocDetails (productId){
+		alert("Product Id : " + productId);
+		alert("${pageContext.request.contextPath}");
+		window.location="${pageContext.request.contextPath}/web/users/product/detail?productId="+productId;
+	}
+	
+</SCRIPT>
+
 </html>

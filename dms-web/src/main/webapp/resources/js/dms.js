@@ -44,12 +44,29 @@ var productConf = [
 
 var MyDocForm = React.createClass({
 	
+	propTypes :{
+		docUploadURL : React.PropTypes.string,
+		defaultImageUrl : React.PropTypes.string
+	},
+	
+	
+	getDefaultProps: function(){
+		return {
+			defaultImageUrl : 'https://s3-us-west-2.amazonaws.com/devdmsproducts01/global_default/img_not_available.jpg'
+		};
+	},
+	
 	getInitialState: function() {
 	    return {
 	    	awskey: "test_"+this.props.confData.docTypeCode,
 	    	awsacl: "public-read-write",
+	    	imgSrc: this.props.confData.docDetaiils ? this.props.confData.docDetails.docUrl :  this.props.defaultImageUrl,
 	    	documentToUpload: ''
 	    	};
+	  },
+	  
+	  uploadProductDetail: function(){
+		  
 	  },
 	  
 	docFileChange: function(e){
@@ -57,8 +74,6 @@ var MyDocForm = React.createClass({
 		this.setState({
 			documentToUpload : e.target.value
 		})
-		
-		
 		var reader = new FileReader();
 		var imgFile = this.refs.file.files[0];
 		console.log(" Image to be uploaded : " + imgFile.name);
@@ -67,10 +82,7 @@ var MyDocForm = React.createClass({
 			imgCmponent.src = event.target.result;
 			//console.log(event.target.result);
 		}
-		
 		reader.readAsDataURL(imgFile);
-		
-		
 	} , 
 	handleForm: function(e){
 		// make ajax call
@@ -100,9 +112,12 @@ var MyDocForm = React.createClass({
 		console.log("File size : " + file.size);
 
 		fd.append('file', file, file.name);
-
 		console.log(fd.get(file.name));
 
+		//data for second ajax call to persist information in DB
+		
+		
+		
 		// Ajax call
 		
 		var urlToPost = 'http://devdmsproducts01.s3.amazonaws.com/';
@@ -127,7 +142,7 @@ var MyDocForm = React.createClass({
 				<form ref="uploadForm" method="POST" encType="multipart/form-data" onSubmit={this.handleForm} >
 				<div id="imgContainer" className="col-xs-6 col-md-3">
 					<a href="#" id="imgThumbnail" className="thumbnail">
-						<img ref="thmbImg" src="http://www.kerry-beaches.com/images/skellig-michael-puffin-small.jpg" />
+						<img ref="thmbImg" src={this.state.imgSrc} />
 					</a>
 					<p>
 						<input  type="hidden" name="key" value={this.state.awskey} />
@@ -146,16 +161,31 @@ var MyDocForm = React.createClass({
 
 var DocContainer = React.createClass({
 	
-	componentDidMount: function() {
-		
-		var urlToPost = "http://localhost:8080/api/details/product/"+this.props.productId;
+	
+	getDefaultProps: function(){
+		return {
+			apiRoot: 'http://localhost:8080/dms-web/api/'
+		};
+	},
+	
+	getInitialState: function() {
 	    return {
+	    		data: []
+	    	};
+	  },
+	
+	componentDidMount: function() {
+		var productId = this.props.productId;
+		alert(" Product Id : " + productId);
+		var urlToPost = this.props.apiRoot+"details/product/"+productId;
+	    alert ("URL To POST : " + urlToPost);
 	    	    
 	    	$.ajax({
 	    	      url: urlToPost,
 	    	      dataType: 'json',
 	    	      cache: false,
 	    	      success: function(data) {
+	    	    	console.log(data); 
 	    	        this.setState({data: data});
 	    	      }.bind(this),
 	    	      error: function(xhr, status, err) {
@@ -167,10 +197,10 @@ var DocContainer = React.createClass({
 	render: function(){
 	// rendering DOM updates
 		var formElements = [];
-		console.log(this.props.confData);
 		var confData = this.state.data;
 	
 		confData.forEach(function(conf){
+			console.log(conf);
 			formElements.push(<MyDocForm confData={conf} key={conf.docConfId} />);
 		});
 		
@@ -184,9 +214,8 @@ var DocContainer = React.createClass({
 });
 
 ReactDOM.render(
-	var product =  this.refs.productId ;
-	console.log("Product under consideration : " + product);
-	<DocContainer productId={product}/>,
+	//var productId = document.getElementById('productId'),
+	<DocContainer productId={10}/>,
 	document.getElementById('dmscontainer')
 );
 	

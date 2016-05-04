@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -65,6 +66,10 @@ public class ManageProductController {
 		return mv;
 
 	}
+	
+	
+	
+	
 
 	public ModelAndView addorUpdateProductConf(@ModelAttribute("productConfForm") ProductDocConfiguration productConf) {
 
@@ -84,6 +89,17 @@ public class ManageProductController {
 		mv.setViewName(homeView);
 		return mv;
 
+	}
+	
+	@RequestMapping(value = "/users/product/detail", method = RequestMethod.GET)
+	public ModelAndView getProductDocs(@RequestParam("productId") Long productId){
+		ModelAndView mv = new ModelAndView();
+		String DOC_DETAILS = "dms";
+		
+		mv.getModel().put("productId", productId);
+		mv.setViewName(DOC_DETAILS);
+		
+		return mv;
 	}
 	
 	

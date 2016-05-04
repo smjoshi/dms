@@ -42,7 +42,7 @@
     		}else if(detailsRequested == '2'){  // product details
     			homeform.action = '/dms-web/web/users/product'
     		}else if(detailsRequested == '3'){  // product document details
-    			homeform.action = '/product/doc'
+    			homeform.action = '/dms-web/web/users/product/detail'
     		}
     		
     		homeform.submit();
