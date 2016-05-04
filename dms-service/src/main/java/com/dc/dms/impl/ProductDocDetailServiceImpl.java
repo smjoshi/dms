@@ -1,6 +1,7 @@
 package com.dc.dms.impl;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,9 @@ public class ProductDocDetailServiceImpl implements ProductDocDetailService {
 
 	@Override
 	public List<ProductDocument> getProductDocDetails(BigInteger productId) throws DMSException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<ProductDocDetailEntity> docDetails = productDocDetailDao.getProductDocDetails(productId);
+		return populateDocDetailModelList(docDetails);
 	}
 	
 	
@@ -84,6 +86,19 @@ public class ProductDocDetailServiceImpl implements ProductDocDetailService {
 			
 		}
 		return docDetail;
+	}
+	
+	
+	private List<ProductDocument> populateDocDetailModelList(List<ProductDocDetailEntity> detailEntityList){
+		
+		List<ProductDocument> productDocuments  = new ArrayList<ProductDocument>();
+		if (detailEntityList != null){
+			for (ProductDocDetailEntity detailEntiry : detailEntityList){
+				productDocuments.add(populateDocDetailModel(detailEntiry));
+			}
+		}
+		
+		return productDocuments;
 	}
 	
 	
