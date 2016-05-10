@@ -79,6 +79,7 @@ public class ProductDocDetailResource {
 	}
 
 	@POST
+	@Path("/product/doc")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ProductDocument addOrUpdateProductDocDetail(ProductDocument pd) throws ApplicationRestException {
