@@ -107,7 +107,7 @@ public class ManageProductController {
 		
 		List<ProductDocConfiguration> confs = getDefaultProductConfigurations(product);
 		
-		//add this configuration 
+		//add this configuration 	
 		Response productConfResponse = RestUtils.callPostJsonRestService(createProductConf, confs,
 				ArrayList.class);
 

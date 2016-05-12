@@ -139,8 +139,8 @@ var MyDocForm = React.createClass({
 		console.log("Product document to be added" + this.props.confData.productId)
 		var productDocument = {
 				productDocDetailId: null,
-			    productId: this.props.confData.productId,
-				productDocConfId: this.props.confData.docConfId,
+			    productId: this.props.confData.docConf.productId,
+				productDocConfId: this.props.confData.docConf.docConfId,
 				docUrl: this.props.urlToPost+awsData.key
 		}
 		
@@ -168,8 +168,8 @@ var MyDocForm = React.createClass({
 		});
 	},	
 	render: function(){
-		alert("Doctype code while renedering " + this.props.confData.docTypeCode);
-		console.log("Doctype code while renedering " + JSON.stringify(this.props.confData));
+		alert("MyDocForm Doctype code while renedering " + this.props.confData.docConf.docTypeCode);
+		console.log("MyDocForm Doctype code while renedering " + JSON.stringify(this.props.confData.docConf));
 		return (
 				<form ref="uploadForm" method="POST" encType="multipart/form-data" onSubmit={this.handleForm} >
 				<div id="imgContainer" className="col-xs-6 col-md-3">
@@ -200,11 +200,15 @@ var DocContainer = React.createClass({
 		};
 	},
 	getInitialState: function() {
+		console.log(" Initialized the doc container ");
+		
 	    return {
 	    		data: []
 	    	};
 	  },
-	componentDidMount: function() {
+	componentWillMount: function() {
+		
+		console.log(" componentWillMount - Component will mount here : " + JSON.stringify(this.state.data));
 		var productId = this.props.productId;
 		alert(" Product Id : " + productId);
 		var urlToPost = this.props.apiRoot+"details/product/"+productId;
@@ -216,7 +220,7 @@ var DocContainer = React.createClass({
 	    	      dataType: 'json',
 	    	      cache: false,
 	    	      success: function(data) {
-	    	    	console.log("Product Data Retrieved " +  data); 
+	    	    	console.log("componentWillMount - Product Data Retrieved " +  data); 
 	    	        this.setState({data: data});
 	    	      }.bind(this),
 	    	      error: function(xhr, status, err) {
@@ -224,13 +228,35 @@ var DocContainer = React.createClass({
 	    	      }.bind(this)
 	    	    });
 	  },
+	  componentDidMount: function() {
+			
+			console.log(" componentDidMount - Component did mount here : " + JSON.stringify(this.state.data));
+			var productId = this.props.productId;
+			alert(" Product Id : " + productId);
+			var urlToPost = this.props.apiRoot+"details/product/"+productId;
+		    alert ("URL To POST : " + urlToPost);
+		    
+		    //Ajax call to get product details	    
+		    	$.ajax({
+		    	      url: urlToPost,
+		    	      dataType: 'json',
+		    	      cache: false,
+		    	      success: function(data) {
+		    	    	console.log("componentWillMount - Product Data Retrieved " +  data); 
+		    	        this.setState({data: data});
+		    	      }.bind(this),
+		    	      error: function(xhr, status, err) {
+		    	        console.error(this.props.url, status, err.toString());
+		    	      }.bind(this)
+		    	    });
+		  },
 	render: function(){
 	// rendering DOM updates
 		var formElements = [];
 		var confData = this.state.data;
-		console.log("Conf Data while rendering in parent  : " +   confData);
+		console.log(" DocContainer Conf Data while rendering in parent  : " +   confData);
 		confData.forEach(function(conf){
-			console.log("Conf Data : " +   JSON.stringify(conf));
+			console.log("DocContainer each Conf Data : " +   JSON.stringify(conf));
 			formElements.push(<MyDocForm confData={conf} key={conf.docConfId} />);
 		});
 		
