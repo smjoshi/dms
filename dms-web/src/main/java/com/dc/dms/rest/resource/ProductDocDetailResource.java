@@ -86,7 +86,7 @@ public class ProductDocDetailResource {
 
 		ProductDocument dbProdDoc = null;
 		try {
-			 docDetailService.upsertProductDocDetails(pd);
+			dbProdDoc = docDetailService.upsertProductDocDetails(pd);
 		} catch (DMSException e) {
 			e.printStackTrace();
 			dbProdDoc = null;
