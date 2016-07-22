@@ -20,9 +20,11 @@
 <body>
 
 	<div id="navbar" class="dmsgnav"></div>
-	<div id="dmscontainer" class="container"></div>
+	<div id="dmscontainer" class="container">
+		<input type="hidden" ref="productId" id="productId" value="${productId}" >
+	</div>
 	
-	<input type="hidden" ref="productId" name="productId" value="${productId}" >
+	
 	<script type="text/babel" src="../../../resources/js/dms.js"></script>
 <!-- 	<div id="content"></div> -->
 <!-- 	<script type="text/babel" src="../../resources/js/example.js"></script> -->

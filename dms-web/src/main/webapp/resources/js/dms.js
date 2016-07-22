@@ -22,8 +22,7 @@ var productConf = [
            			"docTypeCode" : "LEFTIMAGE",
            			"isMandatory" : false,
            			"isMultipleItemAllowed" : false,
-           			"groupId" : null,
-           			"description" : null		
+           			"groupId" : null,           			"description" : null		
            		},
            		{
            			"productId" : 3,
@@ -46,6 +45,10 @@ var productConf = [
 
            ]
  */
+
+
+var prodId = document.getElementById('productId').value;
+
 var MyDocForm = React.createClass({
 	
 	propTypes :{	
@@ -224,8 +227,8 @@ var DocContainer = React.createClass({
 });
 
 ReactDOM.render(
-	//var productId = document.getElementById('productId'),
-	<DocContainer productId={10} apiRoot={'http://localhost:8080/dms-web/api/'}/>,
+
+	<DocContainer productId={prodId} apiRoot={'http://localhost:8080/api/'}/>,
 	document.getElementById('dmscontainer')
 );
 	

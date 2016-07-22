@@ -40,9 +40,9 @@
     		if (detailsRequested == '1'){   // org details
     			homeform.action = '/org'
     		}else if(detailsRequested == '2'){  // product details
-    			homeform.action = '/dms-web/web/users/product'
+    			homeform.action = '/web/users/product'
     		}else if(detailsRequested == '3'){  // product document details
-    			homeform.action = '/dms-web/web/users/product/detail'
+    			homeform.action = '/web/users/product/detail'
     		}
     		
     		homeform.submit();
