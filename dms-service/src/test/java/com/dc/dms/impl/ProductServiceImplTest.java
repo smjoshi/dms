@@ -68,7 +68,6 @@ public class ProductServiceImplTest {
 
 		try {
 			when(productDao.create(any(ProductEntity.class))).thenReturn(productEntityDBInstance());
-
 			Product createdProduct = productService.upsertProduct(productToBeCreated());
 
 			assertEquals(new BigInteger(PRODUCT_ID), createdProduct.getProductId());
@@ -86,7 +85,6 @@ public class ProductServiceImplTest {
 
 		try {
 			when(productDao.update(any(ProductEntity.class))).thenReturn(true);
-
 			Product updatedProduct = productService.upsertProduct(productToBeUpdated());
 
 			assertEquals("Passenger Cars / Family Car", updatedProduct.getDescription());

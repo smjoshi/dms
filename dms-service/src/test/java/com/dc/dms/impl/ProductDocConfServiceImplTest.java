@@ -133,7 +133,7 @@ public class ProductDocConfServiceImplTest {
 	private ProductDocConfiguration confToBeCreated() {
 
 		ProductDocConfiguration conf = new ProductDocConfiguration();
-		conf.setDescription("Front Image");
+		conf.setDescription("Passenger Vehicle Front Image");
 		conf.setDocTypeCode("Image");
 		conf.setGroupId(null);
 		conf.setMandatory(true);

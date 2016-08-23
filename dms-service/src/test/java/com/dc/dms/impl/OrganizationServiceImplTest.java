@@ -36,8 +36,8 @@ import com.dc.dms.intf.OrganizationService;
 @ContextConfiguration(classes = { DMSServiceConfig.class, DatabaseJpaConfig.class })
 public class OrganizationServiceImplTest {
 
-	private static String ORG_ID = "1";
-	private static String ORG_USER_ID = "1";
+	private static BigInteger ORG_ID = new BigInteger("1");
+	private static BigInteger ORG_USER_ID =  new BigInteger("1");
 	
 	
 	@InjectMocks
@@ -59,8 +59,7 @@ public class OrganizationServiceImplTest {
 		Organization org;
 		try {
 			when(orgDao.readByKey(Matchers.any(OrgEntity.class))).thenReturn(returnAlreadyPresentOrg());
-			
-			org = orgService.getOrganizationDetail(new BigInteger(ORG_ID));
+			org = orgService.getOrganizationDetail(ORG_ID);
 			
 			assertEquals(ORG_ID, org.getOrgId());
 		} catch (DMSDaoException e) {
@@ -69,8 +68,6 @@ public class OrganizationServiceImplTest {
 			e.printStackTrace();
 		}
 		
-		
-		
 	}
 
 	@Test
@@ -78,7 +75,6 @@ public class OrganizationServiceImplTest {
 		
 		try {
 			when(orgDao.create(Matchers.any(OrgEntity.class))).thenReturn(returnAlreadyPresentOrg());
-			
 			Organization createdOrg = orgService.upsertOrginzation(orgToBeCreated());
 			
 			assertEquals(ORG_ID, createdOrg.getOrgId());
@@ -94,8 +90,7 @@ public class OrganizationServiceImplTest {
 		
 		try {
 			when(orgDao.update(Matchers.any(OrgEntity.class))).thenReturn(true);
-			
-			Organization updatedOrg = orgService.upsertOrginzation(orgToBeCreated());
+			Organization updatedOrg = orgService.upsertOrginzation(orgToBeUpdated());
 			
 			assertEquals("Auto IMS India updated", updatedOrg.getOrgName());
 		} catch (DMSDaoException e) {
@@ -110,8 +105,7 @@ public class OrganizationServiceImplTest {
 		
 		try {
 			when(orgDao.getUserOrgnizations(Matchers.any(BigInteger.class))).thenReturn(returnUsersOgnizations());
-			
-			List<Organization> orgList = orgService.getUserOrganizations(new BigInteger(ORG_USER_ID));
+			List<Organization> orgList = orgService.getUserOrganizations(ORG_USER_ID);
 			
 			assertThat(orgList, is(not(orgList.isEmpty())));
 		} catch (DMSException e) {
@@ -125,10 +119,10 @@ public class OrganizationServiceImplTest {
 	private OrgEntity returnAlreadyPresentOrg(){
 		OrgEntity orgEntity = new OrgEntity();
 		
-		orgEntity.setOrgId(new BigInteger(ORG_ID));
+		orgEntity.setOrgId(ORG_ID);
 		orgEntity.setOrgName("Auto IMS India");
 		orgEntity.setOrgType("Auto DealrerShip");
-		orgEntity.setUserId(new BigInteger(ORG_USER_ID));
+		orgEntity.setUserId(ORG_USER_ID);
 		
 		return orgEntity;
 		
@@ -147,7 +141,7 @@ public class OrganizationServiceImplTest {
 		
 		org.setOrgName("Auto IMS India");
 		org.setOrgType("Auto Dealership");
-		org.setUserId(new BigInteger(ORG_USER_ID));
+		org.setUserId(ORG_USER_ID);
 		
 		return org;
 		
@@ -156,10 +150,10 @@ public class OrganizationServiceImplTest {
 	private Organization orgToBeUpdated(){
 		Organization org = new Organization();
 		
-		org.setOrgId(new BigInteger(ORG_ID));
+		org.setOrgId(ORG_ID);
 		org.setOrgName("Auto IMS India updated");
 		org.setOrgType("Auto Dealership");
-		org.setUserId(new BigInteger(ORG_USER_ID));
+		org.setUserId(ORG_USER_ID);
 		
 		return org;
 	}

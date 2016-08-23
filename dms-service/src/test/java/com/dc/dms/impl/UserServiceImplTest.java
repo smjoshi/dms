@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 import java.math.BigInteger;
 
 import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,7 +64,7 @@ public class UserServiceImplTest {
 
 			User returnedUser = userService.registerUser(user);
 			
-			Assert.assertEquals(RETURNED_USER_ID, returnedUser.getUserId());
+			assertEquals(RETURNED_USER_ID, returnedUser.getUserId());
 			
 		} catch (DMSDaoException e) {
 			// TODO Auto-generated catch block
@@ -80,8 +80,6 @@ public class UserServiceImplTest {
 	}
 	
 	
-	
-	
 	@Test
 	public void testRegisterUser_with_DuplicateUserException() {
 		
@@ -92,18 +90,50 @@ public class UserServiceImplTest {
 
 			user.setFirstName("Sachin");
 			user.setLoginId("sjoshi");
-
 			
 			User returnedUser = userService.registerUser(user);
 		
 		} catch (Exception e) {
 			assertThat(e, CoreMatchers.instanceOf(DuplicateUserException.class));
-			//assertThat(e, IsI(e instanceof DuplicateUserException));
+		}
+	}
+		
+	@Test
+	public void testGetUserByLogin(){
+		
+		User userToLogin = new User();
+		try{
+			
+			Mockito.when(userDao.getUserByLoginId(Matchers.anyString())).thenReturn(createdUserEntity());
+			userToLogin.setFirstName("Sachin");
+			userToLogin.setLoginId("sjoshi");
+			
+			userToLogin = userService.getUserByLogin(userToLogin);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		assertEquals(RETURNED_USER_ID, userToLogin.getUserId());
+	}
+	
+	
+	
+	public void testGetUserByCredentials(){
+		
+		User userToLogin = new User();
+		
+		try {
+			
+			Mockito.when(userDao.getUserByCredentials(Matchers.any(UserEntity.class))).thenReturn(createdUserEntity());
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
-		
-		
 	}
+	
 
 	private UserEntity createdUserEntity() {
 		UserEntity createdUser = new UserEntity();

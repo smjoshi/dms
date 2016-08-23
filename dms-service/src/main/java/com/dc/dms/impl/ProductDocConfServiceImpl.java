@@ -97,6 +97,7 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 			docConfEntity.setMandatory(docConf.isMandatory());
 			docConfEntity.setMultipleItemAllowed(docConf.isMultipleItemAllowed());
 			docConfEntity.setGrouPId(docConf.getGroupId());
+			docConfEntity.setDescription(docConf.getDescription());
 		}
 
 		return docConfEntity;
@@ -114,6 +115,7 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 			docConf.setMandatory(prodDocEntity.isMandatory());
 			docConf.setMultipleItemAllowed(prodDocEntity.isMultipleItemAllowed());
 			docConf.setGroupId(prodDocEntity.getGrouPId());
+			docConf.setDescription(prodDocEntity.getDescription());
 		}
 		return docConf;
 	}

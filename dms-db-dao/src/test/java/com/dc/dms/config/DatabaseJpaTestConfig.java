@@ -1,66 +1,37 @@
 package com.dc.dms.config;
 
-
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp.BasicDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-
-
 
 @Configuration
-@EnableTransactionManagement
-@ComponentScan(basePackages = "com.dc.dms.dao.impl")
-@Profile("default")
-public class DatabaseJpaConfig {
-	
-	@Value("${db.drivername}")
-	private  String PROPERTY_NAME_DATABASE_DRIVER;
-	
-	@Value("${db.password}")
-    private String PROPERTY_NAME_DATABASE_PASSWORD;
-	
-	@Value("${db.url}")
-    private  String PROPERTY_NAME_DATABASE_URL;
-	
-	@Value("${db.username}")
-    private  String PROPERTY_NAME_DATABASE_USERNAME;
-    
-	
-    private  final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
+@Profile("test")
+public class DatabaseJpaTestConfig {
+
+	private  final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private  final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     private  final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "com.dc.dms.entity";
 	
 	
-	@Autowired
-	private Environment env;
-	
 	@Bean
 	DataSource dataSource(){
-		BasicDataSource dataSrc = new BasicDataSource();
-        
-		dataSrc.setDriverClassName(PROPERTY_NAME_DATABASE_DRIVER);
-		dataSrc.setUrl(PROPERTY_NAME_DATABASE_URL);
-		dataSrc.setUsername(PROPERTY_NAME_DATABASE_USERNAME);
-		dataSrc.setPassword(PROPERTY_NAME_DATABASE_PASSWORD);
-        
-        return dataSrc;
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
+				.addScript("")
+				.addScript("")
+				.build();
 	}
+	
 	
 	@Bean
 	public PlatformTransactionManager transactionManager(final EntityManagerFactory emf){
@@ -90,6 +61,5 @@ public class DatabaseJpaConfig {
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, "true");
         return properties;  
 	}
-	
 
 }
