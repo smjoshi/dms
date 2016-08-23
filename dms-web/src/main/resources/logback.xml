@@ -16,7 +16,7 @@
       </encoder>
   </appender>
   
-  <logger name="com.dc.dms" level="INFO">
+  <logger name="com.dc.dms" level="TRACE">
     <appender-ref ref="FILE" />
   </logger>
 
