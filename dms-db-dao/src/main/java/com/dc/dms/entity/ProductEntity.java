@@ -22,7 +22,7 @@ public class ProductEntity implements Serializable {
 	@Column(name="PRODUCT_ID")
 	private BigInteger productId;
 	
-	@Column(name="ORGNIZATION_ID")
+	@Column(name="ORGANIZATION_ID")
 	private BigInteger orgId;
 	
 	@Column(name="PRODUCT_NAME")

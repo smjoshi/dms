@@ -8,7 +8,10 @@ import com.dc.dms.dao.exception.DMSDaoException;
 public interface BaseDao<T> {
 
     T readByKey(T t) throws DMSDaoException;
+
     T create(T t) throws DMSDaoException;
+
     boolean update(T t) throws DMSDaoException;
 
+    boolean delete(T t) throws DMSDaoException;
 }

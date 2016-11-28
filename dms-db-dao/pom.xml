@@ -12,6 +12,7 @@
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<hibernate.version>4.3.10.Final</hibernate.version>
 		<junit.verison>4.12</junit.verison>
+        <dbh2.version>1.4.192</dbh2.version>
 	</properties>
 
 
@@ -33,6 +34,13 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${dbh2.version}</version>
 		</dependency>
 
 

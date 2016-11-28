@@ -12,7 +12,7 @@ public interface UserDao extends BaseDao<UserEntity> {
     public UserEntity getUserByLoginId(String loginId) throws DMSDaoException;
     
     public UserEntity getUserByCredentials(UserEntity user) throws DMSDaoException;
-    
+
     
     
 }

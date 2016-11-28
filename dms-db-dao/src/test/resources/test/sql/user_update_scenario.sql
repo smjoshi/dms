@@ -1,0 +1,3 @@
+
+
+INSERT INTO users (LOGIN_ID,user_id,PASSWORD,EMAIL_ID,ORG_NAME,FIRST_NAME,LAST_NAME) VALUES ('ash12@gmail.com',29,'TestAsh1','ash12@gmail.com','Manheim1','ash1211','ash2111');

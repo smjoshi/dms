@@ -50,4 +50,14 @@ public class ProductDocDetailsDaoImpl extends AbstractDmsDao implements ProductD
 		return docDetails;
 	}
 
+	public boolean delete(ProductDocDetailEntity productDocDetailEntity) throws DMSDaoException {
+		boolean deleted = true;
+
+		entityManager.remove(entityManager.contains(productDocDetailEntity) ? productDocDetailEntity : entityManager.merge(productDocDetailEntity));
+
+		if (readByKey(productDocDetailEntity) != null) {
+			deleted = false;
+		}
+		return deleted;
+	}
 }

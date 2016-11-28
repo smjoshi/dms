@@ -18,7 +18,7 @@ public class OrgEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "ORGNIZATION_ID")
+	@Column(name = "ORGANIZATION_ID")
 	private BigInteger orgId;
 
 	@Column(name = "USER_ID")

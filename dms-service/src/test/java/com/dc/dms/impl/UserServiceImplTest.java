@@ -123,11 +123,7 @@ public class UserServiceImplTest {
 		User userToLogin = new User();
 		
 		try {
-			
 			Mockito.when(userDao.getUserByCredentials(Matchers.any(UserEntity.class))).thenReturn(createdUserEntity());
-			
-			
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
