@@ -1,6 +1,7 @@
 package com.dc.dms.dao.impl;
 
 import com.dc.dms.utils.TestDatabaseHelper;
+import org.junit.Before;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -27,5 +28,11 @@ public abstract class AbstractDaoTestSupport implements ApplicationContextAware{
           for (String  file: scriptFiles){
                 dbHelper.executeScriptFile(file, getDataSource());
           }
+    }
+
+    @Before
+    public void runTest(){
+        //initialize database
+        dbHelper.truncateTables(getDataSource());
     }
 }

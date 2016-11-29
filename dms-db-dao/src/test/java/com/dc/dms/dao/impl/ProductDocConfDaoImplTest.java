@@ -36,7 +36,7 @@ public class ProductDocConfDaoImplTest extends AbstractDaoTestSupport {
                 "test/sql/generic_create_product_doc_conf.sql");
 
         ProductDocConfEntity conf = new ProductDocConfEntity();
-        conf.setProductDocConfId(new BigInteger("80008"));
+        conf.setProductDocConfId(new BigInteger("300003"));
 
         ProductDocConfEntity fetchedConf = confDao.readByKey(conf);
 
@@ -45,7 +45,7 @@ public class ProductDocConfDaoImplTest extends AbstractDaoTestSupport {
         assertEquals("RIGHTIMAGE", fetchedConf.getDocTypeCode());
         assertEquals("Vehicle Right side Image", fetchedConf.getDescription());
         assertEquals(true, fetchedConf.isMandatory());
-        assertEquals(0, fetchedConf.getGrouPId());
+        assertEquals("0", fetchedConf.getGrouPId());
         assertEquals(false, fetchedConf.isMultipleItemAllowed());
 
     }
@@ -85,7 +85,7 @@ public class ProductDocConfDaoImplTest extends AbstractDaoTestSupport {
         //prepare pre database condition for test
         preparePreDatabaseCondition("test/sql/generic_create_org.sql",
                 "test/sql/generic_create_product.sql",
-                "generic_create_product_doc_conf.sql");
+                "test/sql/generic_create_product_doc_conf.sql");
 
         //read the product DOC configuration
         ProductDocConfEntity conf = new ProductDocConfEntity();

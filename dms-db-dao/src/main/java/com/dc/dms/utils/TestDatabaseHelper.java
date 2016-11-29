@@ -95,5 +95,26 @@ public class TestDatabaseHelper {
         stmt.execute(query);
     }
 
+    public void truncateTables(DataSource ds) {
+        String[] tables = {"USERS",
+                "ORGANIZATION",
+                "PRODUCT",
+                "PRODUCT_DOC_CONF",
+                "PRODUCT_DOC_DETAILS"
+
+        };
+        for(String table : tables) {
+            truncateTable(table, ds);
+        }
+    }
+
+
+    public void truncateTable(String tableName, DataSource dataSource) {
+        try {
+            execute(String.format("DELETE FROM %s", tableName), dataSource);
+        } catch (Exception ex) {
+            System.out.println("Looks like '" + tableName + "' is not a valid table?\n" + ex.getMessage());
+        }
+    }
 
 }

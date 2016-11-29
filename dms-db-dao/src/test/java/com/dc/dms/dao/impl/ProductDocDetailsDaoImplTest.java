@@ -37,13 +37,13 @@ public class ProductDocDetailsDaoImplTest extends AbstractDaoTestSupport {
                 "test/sql/generic_create_product_doc_detail.sql");
 
         ProductDocDetailEntity detail = new ProductDocDetailEntity();
-        detail.setProductDocConfId(new BigInteger("80008"));
+        detail.setProductDocDetailId(new BigInteger("80008"));
 
         ProductDocDetailEntity fetchedDetail = detailDao.readByKey(detail);
 
         assertEquals(80008, fetchedDetail.getProductDocDetailId().intValue());
         assertEquals(10, fetchedDetail.getProductId().intValue());
-        assertEquals(300003, fetchedDetail.getProductDocConfId());
+        assertEquals(300003, fetchedDetail.getProductDocConfId().intValue());
         assertEquals("http://devdmsproducts01.s3.amazonaws.com/dev/maruti-suzuki-swift-image-9925.jpg", fetchedDetail.getDocUrl());
 
     }

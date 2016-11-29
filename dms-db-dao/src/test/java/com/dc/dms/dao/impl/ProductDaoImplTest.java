@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -92,7 +93,15 @@ public class ProductDaoImplTest extends AbstractDaoTestSupport {
 
     @Test
     public void getOrgProducts() throws Exception {
-        Assert.fail("Not yet implemented");
+
+        //prepare data
+        preparePreDatabaseCondition("test/sql/generic_create_org.sql", "test/sql/generic_create_product.sql");
+
+        //get Org Products
+        List<ProductEntity> products = productDao.getOrgProducts(new BigInteger("1000001"));
+
+        Assert.assertTrue(products.size() > 0);
+
     }
 
     @Test

@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.sql.SQLException;
 
 import com.dc.dms.config.TestDatabaseJpaConfig;
+import com.dc.dms.entity.ProductDocDetailEntity;
 import com.dc.dms.utils.TestDatabaseHelper;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.junit.Assert;
@@ -24,33 +25,54 @@ import com.dc.dms.entity.UserEntity;
 
 import javax.sql.DataSource;
 
+import static org.junit.Assert.assertEquals;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestDatabaseJpaConfig.class)
-public class UserDaoImplTest implements ApplicationContextAware{
+public class UserDaoImplTest extends AbstractDaoTestSupport{
 
 	@Autowired
 	UserDao userDao = null;
 
-	private ApplicationContext appContext;
-
-
 	@Test
-	public void testGetUserByLoginId() {
-		Assert.fail("Not yet implemented");
+	public void testGetUserByLoginId() throws Exception{
+
+		String USER_LOGIN_ID = "smjoshi";
+		//prepare test data
+		preparePreDatabaseCondition("test/sql/user_update_scenario.sql");
+
+		UserEntity fetchedUser = userDao.getUserByLoginId(USER_LOGIN_ID);
+
+		assertEquals("smjoshi", fetchedUser.getLoginId());
+		assertEquals("mailtosmj@gmail.com", fetchedUser.getEmail());
+		assertEquals("Sachin", fetchedUser.getFirstName());
+		assertEquals("Joshi", fetchedUser.getLastName());
+
 	}
 
 	@Test
-	public void testReadByKey() {
-		Assert.fail("Not yet implemented");
+	public void testReadByKey() throws Exception{
+		//prepare pre database condition for test
+		preparePreDatabaseCondition("test/sql/user_update_scenario.sql");
+
+		UserEntity user  = new UserEntity();
+		user.setUserId(new BigInteger("29"));
+
+		UserEntity fetchedUser = userDao.readByKey(user);
+
+		assertEquals("smjoshi", fetchedUser.getLoginId());
+		assertEquals("mailtosmj@gmail.com", fetchedUser.getEmail());
+		assertEquals("Sachin", fetchedUser.getFirstName());
+		assertEquals("Joshi", fetchedUser.getLastName());
+
 	}
 
 	@Test
 	public void testCreateUser_withNoException() {
 		
 		UserEntity user = new UserEntity();
-		//
-		// user.setUserId(new BigInteger("1"));
+
 		user.setFirstName("Test_First");
 		user.setLastName("Test_Last");
 		user.setLoginId("testId1");
@@ -70,96 +92,42 @@ public class UserDaoImplTest implements ApplicationContextAware{
 	}
 
 	@Test
-	public void test_user_Update(){
+	public void test_user_Update() throws Exception{
 
 		// This method tests the updates of entity
-		//Prepare pre test data
-		TestDatabaseHelper dbHelper = TestDatabaseHelper.getInstantce();
-		try {
-			dbHelper.executeScriptFile("test/sql/user_update_scenario.sql", getDataSource());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		//prepare pre database condition for test
+		preparePreDatabaseCondition("test/sql/user_update_scenario.sql");
 
 		//read by key
 		UserEntity user = new UserEntity();
 		user.setUserId(new BigInteger("29"));
 		UserEntity fetchedUser = null;
-		try {
-			fetchedUser = userDao.readByKey(user);
-		} catch (DMSDaoException e) {
-			e.printStackTrace();
-		}
 
-		fetchedUser.setEmail("mailtosmj@gmail.com");
+		fetchedUser = userDao.readByKey(user);
+		fetchedUser.setEmail("testmail@gmail.com");
 
-		try {
-			userDao.update(fetchedUser);
-		} catch (DMSDaoException e) {
-			e.printStackTrace();
-		}
+		//update user attribute
+		userDao.update(fetchedUser);
+		UserEntity updatedUser = userDao.readByKey(user);
 
-		UserEntity updatedUser = null;
-		try {
-			updatedUser = userDao.readByKey(user);
-		} catch (DMSDaoException e) {
-			e.printStackTrace();
-		}
-
-		Assert.assertEquals(updatedUser.getEmail(),"mailtosmj@gmail.com");
+		Assert.assertEquals(updatedUser.getEmail(),"testmail@gmail.com");
 	}
 
 
 	@Test
-	public void test_user_delete(){
+	public void test_user_delete() throws Exception{
 
-		//delete previously created
-		// This method tests the updates of entity
-		//Prepare pre test data
-		boolean isDeleted = false;
-		TestDatabaseHelper dbHelper = TestDatabaseHelper.getInstantce();
-		try {
-			dbHelper.executeScriptFile("test/sql/user_update_scenario.sql", getDataSource());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		//prepare pre database condition for test
+		preparePreDatabaseCondition("test/sql/user_update_scenario.sql");
 
 		//read by key
 		UserEntity user = new UserEntity();
 		user.setUserId(new BigInteger("29"));
 
-		try {
-			isDeleted = userDao.delete(user);
-		} catch (DMSDaoException e) {
-			e.printStackTrace();
-			isDeleted = false;
-		}
-
+		boolean	isDeleted = userDao.delete(user);
 		Assert.assertTrue(isDeleted);
 
 	}
 
-	public UserDao getUserDao() {
-		return userDao;
-	}
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
 
-
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-	     this.appContext = applicationContext;
-	}
-
-	private DataSource getDataSource(){
-		return appContext.getBean(DataSource.class);
-	}
 }

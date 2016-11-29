@@ -1,6 +1,7 @@
 package com.dc.dms.impl.integration;
 
 import com.dc.dms.config.DMSServiceConfig;
+import com.dc.dms.config.TestDatabaseJpaConfig;
 import com.dc.dms.domain.model.User;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.UserService;
