@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { DMSServiceConfig.class, TestDatabaseJpaConfig.class })
-public class UserServiceIntegrationTest {
+public class UserServiceIntegrationTest extends BaseServiceTest{
 
     @Autowired
     private UserService userService = null;

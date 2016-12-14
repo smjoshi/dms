@@ -3,8 +3,9 @@ package com.dc.dms.dao.impl;
 import com.dc.dms.config.TestDatabaseJpaConfig;
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.ProductDocDetailDao;
-import com.dc.dms.entity.ProductDocConfEntity;
 import com.dc.dms.entity.ProductDocDetailEntity;
+import com.dc.dms.entity.ProductEntity;
+import com.dc.dms.utils.test.AbstractTestSupport;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestDatabaseJpaConfig.class)
-public class ProductDocDetailsDaoImplTest extends AbstractDaoTestSupport {
+public class ProductDocDetailsImplTest extends BaseTest {
 
     @Autowired
     private ProductDocDetailDao detailDao = null;
@@ -136,6 +137,19 @@ public class ProductDocDetailsDaoImplTest extends AbstractDaoTestSupport {
 
         ProductDocDetailEntity deletedDetail = detailDao.readByKey(detail);
         Assert.assertNull(deletedDetail);
+    }
+
+
+    @Test
+    public void getProductDocuments() throws Exception {
+
+        int ORG_ID = 1000001;
+        int PRODUCT_ID = 10;
+        //prepare pre database condition for test
+        preparePreDatabaseCondition("test/sql/scenario/get_product_document_details.sql"  );
+        ProductEntity selectedProduct = detailDao.getProductDocuments(ORG_ID,PRODUCT_ID);
+
+        Assert.assertNotNull(selectedProduct);
     }
 
 }

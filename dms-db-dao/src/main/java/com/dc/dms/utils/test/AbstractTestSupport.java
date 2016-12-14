@@ -1,7 +1,7 @@
-package com.dc.dms.dao.impl;
+package com.dc.dms.utils.test;
 
 import com.dc.dms.utils.TestDatabaseHelper;
-import org.junit.Before;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,16 +11,16 @@ import javax.sql.DataSource;
 /**
  * Created by sacjoshi on 11/23/2016.
  */
-public abstract class AbstractDaoTestSupport implements ApplicationContextAware{
+public abstract class AbstractTestSupport implements ApplicationContextAware{
 
-    private  ApplicationContext appContext = null;
-    private TestDatabaseHelper dbHelper = TestDatabaseHelper.getInstantce();
+    protected  ApplicationContext appContext = null;
+    protected TestDatabaseHelper dbHelper = TestDatabaseHelper.getInstantce();
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.appContext = applicationContext;
     }
 
-    private DataSource getDataSource(){
+    protected DataSource getDataSource(){
         return appContext.getBean(DataSource.class);
     }
 
@@ -30,9 +30,5 @@ public abstract class AbstractDaoTestSupport implements ApplicationContextAware{
           }
     }
 
-    @Before
-    public void runTest(){
-        //initialize database
-        dbHelper.truncateTables(getDataSource());
-    }
+
 }

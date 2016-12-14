@@ -4,6 +4,7 @@ import com.dc.dms.config.TestDatabaseJpaConfig;
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.ProductDocConfDao;
 import com.dc.dms.entity.ProductDocConfEntity;
+import com.dc.dms.utils.test.AbstractTestSupport;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestDatabaseJpaConfig.class)
-public class ProductDocConfDaoImplTest extends AbstractDaoTestSupport {
+public class ProductDocConfImplTest extends BaseTest {
 
     @Autowired
     private ProductDocConfDao confDao = null;

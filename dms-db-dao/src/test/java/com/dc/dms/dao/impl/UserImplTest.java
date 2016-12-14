@@ -1,36 +1,26 @@
 package com.dc.dms.dao.impl;
 
-import java.io.IOException;
 import java.math.BigInteger;
-import java.sql.SQLException;
 
 import com.dc.dms.config.TestDatabaseJpaConfig;
-import com.dc.dms.entity.ProductDocDetailEntity;
-import com.dc.dms.utils.TestDatabaseHelper;
-import org.apache.commons.dbcp.BasicDataSource;
+import com.dc.dms.utils.test.AbstractTestSupport;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.dc.dms.config.DatabaseJpaConfig;
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.UserDao;
 import com.dc.dms.entity.UserEntity;
-
-import javax.sql.DataSource;
 
 import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestDatabaseJpaConfig.class)
-public class UserDaoImplTest extends AbstractDaoTestSupport{
+public class UserImplTest extends BaseTest {
 
 	@Autowired
 	UserDao userDao = null;
