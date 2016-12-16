@@ -9,12 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @ComponentScan(basePackages = { "com.dc.dms.web.controller" })
-public class WebConfig extends WebMvcAutoConfigurationAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
     public void configureViewResolvers(ViewResolverRegistry registry) {

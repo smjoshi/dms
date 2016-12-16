@@ -13,6 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.dc.dms.Application;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +36,8 @@ public class ProductDocDetailResource {
 
 	@Autowired
 	private ProductDocConfService confService = null;
+
+	private static final Logger logger = LoggerFactory.getLogger(ProductDocDetailResource.class);
 
 	/**
 	 * @param productId
@@ -76,6 +81,23 @@ public class ProductDocDetailResource {
 			throw new ApplicationRestException();
 		}
 		return docDetailList;
+	}
+
+
+	@GET
+	@Path("/product/{orgId}/{productId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProductDocDetail> getProductDocuments(@PathParam("orgId") BigInteger orgId, @PathParam("productId") BigInteger productId) throws ApplicationRestException
+	{
+		logger.debug("{ComponentName :ProductDocDetailResource , methodName:getProductDocuments, parameters{orgId:" + orgId + "productId:"+ productId + " }}");
+		List<ProductDocDetail> docDetails = null;
+		try {
+			docDetails =   docDetailService.getProductDocuments(orgId.intValue(), productId.intValue());
+		} catch (DMSException e) {
+			e.printStackTrace();
+		}
+
+		return  docDetails;
 	}
 
 	@POST
