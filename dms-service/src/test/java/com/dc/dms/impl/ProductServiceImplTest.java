@@ -11,6 +11,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dc.dms.config.TestDatabaseJpaConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +38,7 @@ import static org.mockito.Mockito.*;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { DMSServiceConfig.class, DatabaseJpaConfig.class })
+@ContextConfiguration(classes = { DMSServiceConfig.class, TestDatabaseJpaConfig.class })
 public class ProductServiceImplTest {
 
 	private String ORG_ID = "1";

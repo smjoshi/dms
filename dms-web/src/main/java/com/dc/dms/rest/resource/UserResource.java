@@ -8,6 +8,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +25,8 @@ public class UserResource {
 
 	@Autowired
 	private UserService userService;
+
+	private static final Logger logger = LoggerFactory.getLogger(UserResource.class);
 
 
 	@POST
@@ -58,6 +62,9 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User registerUser(User user) throws ApplicationRestException {
 
+		logger.info("UserResource.registerUser is invoked ");
+		logger.debug("{componentName:UserResource, methodName:registerUser, parameters{user.toString()}}");
+
 		User createdUser = null;
 
 		try {
@@ -65,9 +72,11 @@ public class UserResource {
 		} catch (DuplicateUserException | DMSException e ) {
 			e.printStackTrace();
 			createdUser = null;
+			logger.debug("{exception:"+ e.getCause() + "}");
 			throw new ApplicationRestException();
-		} 
+		}
 
+		logger.debug("{componentName:UserResource, methodName:registerUser , exit: success");
 		return createdUser;
 	}
 

@@ -1,5 +1,6 @@
 package com.dc.dms.utils;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
 
 import javax.sql.DataSource;
@@ -13,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sacjoshi on 11/18/2016.
@@ -24,6 +26,7 @@ public class TestDatabaseHelper {
     private static TestDatabaseHelper INSTANCE;
 
     private Connection connection = null;
+    private JdbcTemplate jdbcTemplate = null;
 
     public static TestDatabaseHelper getInstantce() {
 
@@ -95,6 +98,13 @@ public class TestDatabaseHelper {
         stmt.execute(query);
     }
 
+
+    public Map<String, Object> excuteQuery(String query, DataSource ds) throws SQLException, ClassNotFoundException {
+
+        jdbcTemplate = new JdbcTemplate(ds);
+        return jdbcTemplate.queryForMap(query);
+    }
+
     public void truncateTables(DataSource ds) {
         String[] tables = {"USERS",
                 "ORGANIZATION",
@@ -103,7 +113,7 @@ public class TestDatabaseHelper {
                 "PRODUCT_DOC_DETAILS"
 
         };
-        for(String table : tables) {
+        for (String table : tables) {
             truncateTable(table, ds);
         }
     }
@@ -116,5 +126,6 @@ public class TestDatabaseHelper {
             System.out.println("Looks like '" + tableName + "' is not a valid table?\n" + ex.getMessage());
         }
     }
+
 
 }

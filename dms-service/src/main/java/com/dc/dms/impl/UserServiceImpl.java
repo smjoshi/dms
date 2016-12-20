@@ -1,6 +1,10 @@
 package com.dc.dms.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 import com.dc.dms.dao.exception.DMSDaoException;
@@ -11,14 +15,22 @@ import com.dc.dms.exception.DMSException;
 import com.dc.dms.exception.DuplicateUserException;
 import com.dc.dms.intf.UserService;
 
+import javax.transaction.Transactional;
+
 @Service("userService")
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userDao = null;
 
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
 	@Override
 	public User registerUser(User user) throws DMSException, DuplicateUserException {
+
+		logger.info("UserServiceImpl.registerUser is invoked ");
+		logger.debug("{componentName:UserServiceImpl, methodName:registerUser, parameters{user.toString()}}");
 		try {
 
 			UserEntity userToBeCreated = prepareUserEntity(user);
@@ -27,15 +39,18 @@ public class UserServiceImpl implements UserService {
 			User returnedUser = getUserByCredentials(user);
 
 			if (returnedUser == null) {
+				logger.debug("{debug:User is going to be created }");
 				userToBeCreated = userDao.create(userToBeCreated);
 				user.setUserId(userToBeCreated.getUserId());
 			} else {
+				logger.debug("{debug: Duplicate user }");
 				// user already exists , throw duplicate registration exception
 				throw new DuplicateUserException();
 			}
 
 		} catch (DMSDaoException e) {
 			e.printStackTrace();
+			logger.debug("{componentName:UserServiceImpl, methodName:registerUser , Exception:"+e.getCause() + "}");
 			throw new DMSException(101, "Error while creating user");
 		}
 		return user;
@@ -58,6 +73,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserByCredentials(User user) throws DMSException {
+
+		logger.debug("{componentName:UserServiceImpl, methodName:getUserByCredentials, parameters{user.toString()}}");
 		UserEntity fetchedUser = null;
 
 		try {
@@ -65,7 +82,7 @@ public class UserServiceImpl implements UserService {
 			fetchedUser = userDao.getUserByCredentials(tobeFetched);
 			user = populateUserModel(fetchedUser);
 		} catch (DMSDaoException e) {
-			e.printStackTrace();
+			logger.debug("{componentName:UserServiceImpl, methodName:getUserByCredentials,message:No such user found!}");
 			throw new DMSException(102, "No Such user found");
 		}
 		return user;

@@ -42,9 +42,9 @@ public class DatabaseJpaConfig {
     private  String PROPERTY_NAME_DATABASE_USERNAME;
     
 	
-    private  final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
-    private  final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private  final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "com.dc.dms.entity";
+    private  final String HIBERNATE_DIALECT = "hibernate.dialect";
+    private  final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+    private  final String ENTITYMANAGER_PACKAGES_TO_SCAN = "com.dc.dms.entity";
 	
 	
 	@Autowired
@@ -74,7 +74,7 @@ public class DatabaseJpaConfig {
 		
 		final LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource());
-		emf.setPackagesToScan(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN);
+		emf.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
 		
 		final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         emf.setJpaVendorAdapter(vendorAdapter);
@@ -86,8 +86,8 @@ public class DatabaseJpaConfig {
 	
 	private Properties hibernateProperties(){
 		Properties properties = new Properties();
-        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, "true");
+        properties.put(HIBERNATE_DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+        properties.put(HIBERNATE_SHOW_SQL, "true");
         return properties;  
 	}
 	

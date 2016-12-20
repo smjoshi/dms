@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import javax.sql.DataSource;
+import java.util.Map;
 
 /**
  * Created by sacjoshi on 11/23/2016.
@@ -28,6 +29,10 @@ public abstract class AbstractTestSupport implements ApplicationContextAware{
           for (String  file: scriptFiles){
                 dbHelper.executeScriptFile(file, getDataSource());
           }
+    }
+
+    public Map<String, Object> executeValidationQuery(String query) throws Exception{
+        return dbHelper.excuteQuery(query, getDataSource());
     }
 
 

@@ -80,6 +80,7 @@ public class ProductDocDetailsDaoImpl extends AbstractDmsDao implements ProductD
                 populateProduct(resultProduct, p);
             }
             //TODO: actually it is adding only single configuraton data (JPA query structure can be improved
+			p.getDocConfigurations().size();
             configurations.addAll(p.getDocConfigurations());
         }
 
@@ -97,6 +98,7 @@ public class ProductDocDetailsDaoImpl extends AbstractDmsDao implements ProductD
         CriteriaQuery<ProductEntity> query =  cb.createQuery(ProductEntity.class);
 
         Root<ProductEntity> product = query.from(ProductEntity.class);
+		product.fetch("docConfigurations");
         Join<ProductEntity, ProductDocConfEntity>  prodConf = product.join("docConfigurations");
         Join<ProductDocConfEntity, ProductDocDetailEntity> docDetails = prodConf.join("docDetail");
 

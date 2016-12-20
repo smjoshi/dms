@@ -89,7 +89,7 @@ public class ProductDocDetailResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<ProductDocDetail> getProductDocuments(@PathParam("orgId") BigInteger orgId, @PathParam("productId") BigInteger productId) throws ApplicationRestException
 	{
-		logger.debug("{ComponentName :ProductDocDetailResource , methodName:getProductDocuments, parameters{orgId:" + orgId + "productId:"+ productId + " }}");
+		logger.debug("{ComponentName :ProductDocDetailResource , methodName:getProductDocuments, parameters{orgId:" + orgId + " productId:"+ productId + " }}");
 		List<ProductDocDetail> docDetails = null;
 		try {
 			docDetails =   docDetailService.getProductDocuments(orgId.intValue(), productId.intValue());

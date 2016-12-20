@@ -75,6 +75,13 @@
 
 		<!-- servlet-api for compile only, your container should have this -->
 
+		<!-- Flyway data migration tool -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+
 	</dependencies>
 	
 	<!-- Package as an executable jar -->
@@ -91,11 +98,7 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				
-			</plugin>
+
 			
 				<plugin>
 				<!-- NOTE: We don't need a groupId specification because the group is
@@ -135,6 +138,12 @@
 						</resource>
 					</resources>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>4.0.3</version>
 			</plugin>
 
 			

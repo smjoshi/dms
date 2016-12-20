@@ -4,6 +4,7 @@ import static org.junit.Assert.assertThat;
 
 import java.math.BigInteger;
 
+import com.dc.dms.config.TestDatabaseJpaConfig;
 import org.hamcrest.CoreMatchers;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -28,10 +29,11 @@ import com.dc.dms.exception.DMSException;
 import com.dc.dms.exception.DuplicateUserException;
 import com.dc.dms.intf.UserService;
 
+import javax.transaction.Transactional;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { DMSServiceConfig.class, DatabaseJpaConfig.class })
+@ContextConfiguration(classes = { DMSServiceConfig.class, TestDatabaseJpaConfig.class })
 public class UserServiceImplTest {
 
 	private BigInteger RETURNED_USER_ID = new BigInteger("1");

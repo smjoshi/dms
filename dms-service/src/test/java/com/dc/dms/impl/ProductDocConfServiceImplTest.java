@@ -7,6 +7,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.*;
 
+import com.dc.dms.config.TestDatabaseJpaConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +38,7 @@ import java.util.List;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { DMSServiceConfig.class, DatabaseJpaConfig.class })
+@ContextConfiguration(classes = { DMSServiceConfig.class, TestDatabaseJpaConfig.class })
 public class ProductDocConfServiceImplTest {
 
 	private String CONF_ID = "1";
