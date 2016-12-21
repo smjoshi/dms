@@ -26,12 +26,12 @@ import static org.junit.Assert.*;
  * Created by sacjoshi on 12/20/2016.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = Application.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class)
 @TestPropertySource(properties = {"env = local"})
 public class UserResourceTest extends BaseTest{
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private TestRestTemplate restTemplate  = null;
 
     @Test
     public void getUserDetails() throws Exception {
@@ -67,7 +67,7 @@ public class UserResourceTest extends BaseTest{
         //verify against the database
         Map<String, Object> userData = this.executeValidationQuery("Select * from Users where user_id = " + createdUser.getUserId());
 
-        assertEquals(userData.get("USER_ID"),createdUser.getUserId());
+        assertEquals(userData.get("USER_ID"),createdUser.getUserId().longValue());
 
     }
 

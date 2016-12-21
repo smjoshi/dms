@@ -18,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -33,7 +34,7 @@ import com.dc.dms.intf.OrganizationService;
 
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 @ContextConfiguration(classes = { DMSServiceConfig.class, TestDatabaseJpaConfig.class })
 public class OrganizationServiceImplTest {
 
@@ -42,8 +43,7 @@ public class OrganizationServiceImplTest {
 	
 	
 	@InjectMocks
-	@Autowired
-	OrganizationService orgService = null;
+	OrganizationService orgService = new OrganizationServiceImpl();
 	
 	@Mock
 	OrganizationDao orgDao = null;

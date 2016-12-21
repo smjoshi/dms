@@ -15,11 +15,14 @@ import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.UserDao;
 import com.dc.dms.entity.UserEntity;
 
+import javax.transaction.Transactional;
+
 import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestDatabaseJpaConfig.class)
+@Transactional
 public class UserImplTest extends BaseTest {
 
 	@Autowired

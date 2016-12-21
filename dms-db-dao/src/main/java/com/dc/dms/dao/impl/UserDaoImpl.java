@@ -18,9 +18,8 @@ import javax.transaction.Transactional;
  * Created by SJoshi on 6/24/2015.
  */
 @Repository
+@Scope(proxyMode = ScopedProxyMode.INTERFACES)
 @Qualifier("userDao")
-@Scope(proxyMode = ScopedProxyMode.DEFAULT)
-@Transactional
 public class UserDaoImpl extends AbstractDmsDao implements UserDao {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -101,4 +100,6 @@ public class UserDaoImpl extends AbstractDmsDao implements UserDao {
         }
         return deleted;
     }
+
+
 }

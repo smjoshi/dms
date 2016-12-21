@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -37,7 +38,7 @@ import java.util.List;
  * @author sjoshi
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 @ContextConfiguration(classes = { DMSServiceConfig.class, TestDatabaseJpaConfig.class })
 public class ProductDocConfServiceImplTest {
 
@@ -45,8 +46,7 @@ public class ProductDocConfServiceImplTest {
 	private String PRODUCT_ID = "1";
 
 	@InjectMocks
-	@Autowired
-	ProductDocConfService docConfService = null;
+	ProductDocConfService docConfService = new ProductDocConfServiceImpl();
 
 	@Mock
 	ProductDocConfDao confDao = null;

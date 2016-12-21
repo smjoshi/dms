@@ -13,6 +13,5 @@ public interface UserDao extends BaseDao<UserEntity> {
     
     public UserEntity getUserByCredentials(UserEntity user) throws DMSDaoException;
 
-    
-    
+
 }

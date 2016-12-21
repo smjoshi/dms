@@ -2,6 +2,7 @@ package com.dc.dms.base;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 /**
  * Created by SJoshi on 6/24/2015.
