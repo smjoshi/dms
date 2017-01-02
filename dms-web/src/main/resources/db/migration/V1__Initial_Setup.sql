@@ -5,7 +5,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema DMS
@@ -87,7 +87,8 @@ DROP TABLE IF EXISTS `DMS`.`PRODUCT_DOC_TYPE` ;
 
 CREATE TABLE IF NOT EXISTS `DMS`.`PRODUCT_DOC_TYPE` (
   `PRODUCT_DOC_TYPE_CODE` VARCHAR(10) NOT NULL COMMENT 'This code determines document type, such as PDF, IMAGE, VIDEO and So on',
-  `DESCRIPTION` VARCHAR(45) NULL)
+  `DESCRIPTION` VARCHAR(45) NULL,
+  PRIMARY KEY (`PRODUCT_DOC_TYPE_CODE`))
 ENGINE = InnoDB
 COMMENT = 'Product Document types, This can be used as lookup Table ';
 
@@ -160,7 +161,7 @@ COMMENT = 'This table contains the product Documents instances as per configurat
 DROP TABLE IF EXISTS `DMS`.`FEATURE_MASTER` ;
 
 CREATE TABLE IF NOT EXISTS `DMS`.`FEATURE_MASTER` (
-  `FEATURE_ID` INT NULL,
+  `FEATURE_ID` INT NOT NULL,
   `FEATURE_NAME` VARCHAR(25) NOT NULL,
   `FEATURE_DESC` VARCHAR(50) NULL,
   `LEVEL_IND` INT NOT NULL DEFAULT 0 COMMENT 'Level indicates the template which the dealer will select.\nThe template can be of 1 of 3 types:\n1. Utility - 0\n2. Comfort - 1\n3. Luxury - 2\nAlso, dealers opting for Utility can opt for features from next level feature set with additional cost and predefined time period.',

@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
-import javax.transaction.Transactional;
+
 
 import com.dc.dms.entity.ProductDocConfEntity;
 import com.dc.dms.entity.ProductEntity;
@@ -17,7 +17,7 @@ import com.dc.dms.base.AbstractDmsDao;
 import com.dc.dms.dao.exception.DMSDaoException;
 import com.dc.dms.dao.intf.ProductDocDetailDao;
 import com.dc.dms.entity.ProductDocDetailEntity;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository

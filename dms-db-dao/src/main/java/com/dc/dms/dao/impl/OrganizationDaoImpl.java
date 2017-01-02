@@ -6,9 +6,10 @@ import com.dc.dms.dao.intf.OrganizationDao;
 import com.dc.dms.entity.OrgEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
+
 import java.math.BigInteger;
 import java.util.List;
 
