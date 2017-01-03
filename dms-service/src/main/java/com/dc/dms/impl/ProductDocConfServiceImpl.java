@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 
 	@Autowired
 	private ProductDocConfDao productDocConfDao = null;
+
+	private static final Logger logger = LoggerFactory.getLogger(ProductDocConfServiceImpl.class);
 	
 	@Override
 	public ProductDocConfiguration upsertProductDocConfiguration(
@@ -54,8 +58,10 @@ public class ProductDocConfServiceImpl implements ProductDocConfService {
 	@Override
 	public List<ProductDocConfiguration> getProductDocConfigurations(
 			BigInteger productId) throws DMSException {
-		
+
+		logger.debug("{componentName:ProductDocConfServiceImpl, methodName:getProductDocConfigurations, parameters{productId.toString()}}");
 		List<ProductDocConfEntity> docConfs = productDocConfDao.getProductDocConfigurations(productId);
+		logger.debug("{componentName:ProductDocConfServiceImpl, methodName:getProductDocConfigurations, configurationCount:" + docConfs.size());
 		return populateModelList(docConfs);
 	}
 	

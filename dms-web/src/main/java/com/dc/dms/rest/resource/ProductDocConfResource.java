@@ -12,6 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +29,8 @@ public class ProductDocConfResource {
 	@Autowired
 	private ProductDocConfService confService = null;
 
+	private static final Logger logger = LoggerFactory.getLogger(ProductDocConfResource.class);
+
 	/**
 	 * @param productId
 	 * @return
@@ -34,17 +38,21 @@ public class ProductDocConfResource {
 	@GET
 	@Path("/product/{productId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductDocConfiguration> getAllProductDocConfig(@QueryParam("productId") BigInteger productId) throws ApplicationRestException {
+	public List<ProductDocConfiguration> getAllConfigurations(@QueryParam("productId") BigInteger productId) throws ApplicationRestException {
+
+		logger.debug("{componentName:ProductDocConfResource, methodName:getAllConfigurations, parameters{productId.toString()}}");
 
 		List<ProductDocConfiguration> confList = null;
 
 		try {
 			confList = confService.getProductDocConfigurations(productId);
+			logger.debug("{componentName:ProductDocConfResource, methodName:getAllConfigurations, ProductConfigurations: " + confList.size());
 		} catch (DMSException e) {
 			e.printStackTrace();
 			confList = null;
 			throw new ApplicationRestException();
 		}
+
 		return confList;
 	}
 
@@ -55,7 +63,7 @@ public class ProductDocConfResource {
 	@GET
 	@Path("/{docConfigId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ProductDocConfiguration getProductDocConfig(@QueryParam("docConfigId") BigInteger docConfigId) throws ApplicationRestException {
+	public ProductDocConfiguration getConfiguration(@QueryParam("docConfigId") BigInteger docConfigId) throws ApplicationRestException {
 
 		ProductDocConfiguration docConfig = null;
 		throw new UnsupportedOperationException();
@@ -69,7 +77,7 @@ public class ProductDocConfResource {
 	@Path("/list")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductDocConfiguration> addOrUpdateProductConfs(List<ProductDocConfiguration> confs)
+	public List<ProductDocConfiguration> upsertConfigurations(List<ProductDocConfiguration> confs)
 			throws ApplicationRestException {
 
 		List<ProductDocConfiguration> dbDocConfig = null;
@@ -85,9 +93,10 @@ public class ProductDocConfResource {
 	
 	
 	@POST
+	@Path("/configuration")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ProductDocConfiguration addOrUpdateProduct(ProductDocConfiguration docConfig)
+	public ProductDocConfiguration upsertConfiguration(ProductDocConfiguration docConfig)
 			throws ApplicationRestException {
 
 		ProductDocConfiguration dbDocConfig = null;
@@ -110,7 +119,7 @@ public class ProductDocConfResource {
 	@DELETE	
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean deleteProductDocConfig(ProductDocConfiguration docConfig) throws ApplicationRestException {
+	public boolean deleteConfiguration(ProductDocConfiguration docConfig) throws ApplicationRestException {
 		throw new UnsupportedOperationException("Operation not yet implemented");
 	}
 

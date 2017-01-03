@@ -23,7 +23,7 @@ import org.springframework.web.client.RestClientException;
 @TestPropertySource(properties = {"env = local"})
 public class ProductDocDetailResourceITest extends BaseTest{
 
-    private static final ObjectMapper objectMappOBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private TestRestTemplate restTemplate = null;
 
