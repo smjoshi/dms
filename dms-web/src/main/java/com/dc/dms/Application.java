@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 import java.util.Arrays;
 
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class, WebMvcAutoConfiguration.class, ErrorMvcAutoConfiguration.class, FlywayAutoConfiguration.class})
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class,  ErrorMvcAutoConfiguration.class, FlywayAutoConfiguration.class})
 public class Application {
 
 
