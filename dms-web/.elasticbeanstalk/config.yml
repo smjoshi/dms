@@ -1,11 +1,15 @@
 branch-defaults:
   default:
-    environment: dms-web-dev
-    group_suffix: null	
+    environment: null
+    group_suffix: null
+  master:
+    environment: null
+deploy:
+  artifact: target/dms-web.jar
 global:
   application_name: dms-web
-  default_ec2_keyname: dms-eb-key
+  default_ec2_keyname: aws-eb
   default_platform: Java 8
   default_region: us-west-2
   profile: eb-cli
-  sc: null
+  sc: git
