@@ -21,7 +21,14 @@ public class Application {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String args[]) throws Exception {
-        ApplicationContext context = SpringApplication.run(Application.class, args);
+        logger.info("Application about to start ");
+
+        ApplicationContext context = null;
+        try {
+            context = SpringApplication.run(Application.class, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         logger.info("Inspecting Spring boot beans");
 

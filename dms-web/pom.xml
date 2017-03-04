@@ -99,126 +99,145 @@
 			</plugin>
 
 
-			
-				<plugin>
-				<!-- NOTE: We don't need a groupId specification because the group is
-                     org.apache.maven.plugins ...which is assumed by default.
-                 -->
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.6</version>
+			<!---->
+				<!--<plugin>-->
+				<!--&lt;!&ndash; NOTE: We don't need a groupId specification because the group is-->
+                     <!--org.apache.maven.plugins ...which is assumed by default.-->
+                 <!--&ndash;&gt;-->
+				<!--<artifactId>maven-assembly-plugin</artifactId>-->
+				<!--<version>2.6</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>make-zip</id> &lt;!&ndash; this is used for inheritance merges &ndash;&gt;-->
+						<!--<phase>package</phase> &lt;!&ndash; bind to the packaging phase &ndash;&gt;-->
+						<!--<goals>-->
+							<!--<goal>single</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+				<!--<configuration>-->
+					<!--<appendAssemblyId>false</appendAssemblyId>-->
+					<!--<descriptors>-->
+						<!--<descriptor>src/assembly/zip.xml</descriptor>-->
+					<!--</descriptors>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<requiresUnpack>
+						<dependency>
+							<groupId>com.dc.dms</groupId>
+							<artifactId>dms-web</artifactId>
+						</dependency>
+					</requiresUnpack>
+				</configuration>
 				<executions>
 					<execution>
-						<id>make-zip</id> <!-- this is used for inheritance merges -->
-						<phase>package</phase> <!-- bind to the packaging phase -->
 						<goals>
-							<goal>single</goal>
+							<goal>repackage</goal>
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptors>
-						<descriptor>src/assembly/zip.xml</descriptor>
-					</descriptors>
-				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.9</version>
-				<configuration>
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
-				</configuration>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>com.spotify</groupId>-->
+				<!--<artifactId>docker-maven-plugin</artifactId>-->
+				<!--<version>0.4.9</version>-->
+				<!--<configuration>-->
+					<!--<imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
+					<!--<dockerDirectory>src/main/docker</dockerDirectory>-->
+					<!--<resources>-->
+						<!--<resource>-->
+							<!--<targetPath>/</targetPath>-->
+							<!--<directory>${project.build.directory}</directory>-->
+							<!--<include>${project.build.finalName}.jar</include>-->
+						<!--</resource>-->
+					<!--</resources>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
 
 			<!-- Fly way Maven plugin -->
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>4.0.3</version>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.flywaydb</groupId>-->
+				<!--<artifactId>flyway-maven-plugin</artifactId>-->
+				<!--<version>4.0.3</version>-->
+			<!--</plugin>-->
 
 			<!-- Plugin to execute command  "npm install" and "npm run build" inside /angular directory -->
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.0</version>
-				<configuration>
-					<workingDirectory>showcase</workingDirectory>
-					<installDirectory>temp</installDirectory>
-				</configuration>
-				<executions>
-					<!-- It will install nodejs and npm -->
-					<execution>
-						<id>install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-						<configuration>
-							<nodeVersion>v4.6.0</nodeVersion>
-							<npmVersion>3.10.8</npmVersion>
-						</configuration>
-					</execution>
+			<!--<plugin>-->
+				<!--<groupId>com.github.eirslett</groupId>-->
+				<!--<artifactId>frontend-maven-plugin</artifactId>-->
+				<!--<version>1.0</version>-->
+				<!--<configuration>-->
+					<!--<workingDirectory>showcase</workingDirectory>-->
+					<!--<installDirectory>temp</installDirectory>-->
+				<!--</configuration>-->
+				<!--<executions>-->
+					<!--&lt;!&ndash; It will install nodejs and npm &ndash;&gt;-->
+					<!--<execution>-->
+						<!--<id>install node and npm</id>-->
+						<!--<goals>-->
+							<!--<goal>install-node-and-npm</goal>-->
+						<!--</goals>-->
+						<!--<configuration>-->
+							<!--<nodeVersion>v4.6.0</nodeVersion>-->
+							<!--<npmVersion>3.10.8</npmVersion>-->
+						<!--</configuration>-->
+					<!--</execution>-->
 
-					<!-- It will execute command "npm install" inside "/angular" directory -->
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>install</arguments>
-						</configuration>
-					</execution>
+					<!--&lt;!&ndash; It will execute command "npm install" inside "/angular" directory &ndash;&gt;-->
+					<!--<execution>-->
+						<!--<id>npm install</id>-->
+						<!--<goals>-->
+							<!--<goal>npm</goal>-->
+						<!--</goals>-->
+						<!--<configuration>-->
+							<!--<arguments>install</arguments>-->
+						<!--</configuration>-->
+					<!--</execution>-->
 
-					<!-- It will execute command "npm build" inside "/angular" directory to clean and create "/dist" directory-->
-					<execution>
-						<id>npm build</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>run build</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+					<!--&lt;!&ndash; It will execute command "npm build" inside "/angular" directory to clean and create "/dist" directory&ndash;&gt;-->
+					<!--<execution>-->
+						<!--<id>npm build</id>-->
+						<!--<goals>-->
+							<!--<goal>npm</goal>-->
+						<!--</goals>-->
+						<!--<configuration>-->
+							<!--<arguments>run build</arguments>-->
+						<!--</configuration>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 
 			<!-- Plugin to copy the content of /angular/dist/ directory to output directory (ie/ /target/transactionManager-1.0/) -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.4.2</version>
-				<executions>
-					<execution>
-						<id>default-copy-resources</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${project.basedir}/showcase/dist</directory>
-								</resource>
-							</resources>
-							<overwrite>true</overwrite>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.apache.maven.plugins</groupId>-->
+				<!--<artifactId>maven-resources-plugin</artifactId>-->
+				<!--<version>2.4.2</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>default-copy-resources</id>-->
+						<!--<phase>process-resources</phase>-->
+						<!--<goals>-->
+							<!--<goal>copy-resources</goal>-->
+						<!--</goals>-->
+						<!--<configuration>-->
+							<!--<outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/</outputDirectory>-->
+							<!--<resources>-->
+								<!--<resource>-->
+									<!--<directory>${project.basedir}/showcase/dist</directory>-->
+								<!--</resource>-->
+							<!--</resources>-->
+							<!--<overwrite>true</overwrite>-->
+						<!--</configuration>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 
-			
 		</plugins>
 	</build>
 
