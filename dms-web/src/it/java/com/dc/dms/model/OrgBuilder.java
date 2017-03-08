@@ -14,33 +14,33 @@ public class OrgBuilder {
     private String orgType = "Test Org Type";
     private Long userId = new Long(1L);
 
-    public OrgBuilder withUserId(Long userId){
+    public OrgBuilder withUserId(Long userId) {
         this.userId = userId;
         return this;
     }
 
-    public  OrgBuilder withOrgName(String orgName){
+    public OrgBuilder withOrgName(String orgName) {
         this.orgName = orgName;
         return this;
     }
 
-    public OrgBuilder withOrgType(String orgType){
+    public OrgBuilder withOrgType(String orgType) {
         this.orgType = orgType;
         return this;
     }
 
-    public  OrgBuilder withOrgId(Long orgId){
+    public OrgBuilder withOrgId(Long orgId) {
         this.orgId = orgId;
         return this;
     }
 
-    public Organization build(){
+    public Organization build() {
         Organization org = new Organization();
 
         org.setOrgType(this.orgType);
         org.setOrgName(this.orgName);
         org.setUserId(new BigInteger(this.userId.toString()));
-        if (this.orgId != null){
+        if (this.orgId != null) {
             org.setOrgId(new BigInteger(this.orgId.toString()));
         }
         return org;
