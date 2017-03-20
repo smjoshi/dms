@@ -24,7 +24,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.dc.dms.dao.impl")
-@Profile("default")
+@Profile("test")
 public class TestDatabaseJpaConfig {
 
     private  final String HIBERNATE_DIALECT = "hibernate.dialect";
