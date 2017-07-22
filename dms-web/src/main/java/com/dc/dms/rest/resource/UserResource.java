@@ -69,10 +69,10 @@ public class UserResource {
 
 		try {
 				createdUser = userService.registerUser(user);
+		} catch ( DuplicateUserException | DMSException | Error e) {
+			e.printStackTrace();
 		} catch ( Throwable t) {
 			t.printStackTrace();
-		} catch (DuplicateUserException | DMSException | Error e ) {
-			e.printStackTrace();
 			createdUser = null;
 			logger.debug("{exception:"+ t.getCause() + "}");
 			throw new ApplicationRestException();
