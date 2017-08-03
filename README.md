@@ -26,4 +26,20 @@ Each element can be developer developer / opdarational guidelines from above poi
 3. Operational things 
 
 
+# Flyway configuration and mvn specific database migration commands
+
+1. Flyway configuration with springboot is very easy , which provides the programatic  data migration and database scripts management approach
+2. Flyway comes with MVN configuration as well (In this project we have used MVN configuration approach)
+
+
+a. mvn flyway:migrate -Dflyway.configFile=flywayConfig.properties   - migrate new schema (It requires some conventions , PLease refer to flyway documentation)
+b. mvn flyway:info -Dflyway.configFile=flywayConfig.properties  - provides version infos
+
+
+
+
+
+
+
+
 
