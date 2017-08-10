@@ -9,38 +9,38 @@ import java.math.BigInteger;
  * 
  */
 @Entity
-@Table(name = "product_doc_details")
-@NamedQuery(name = "ProductDocDetailEntity.findAll", query = "SELECT p FROM ProductDocDetailEntity p")
-public class ProductDocDetailEntity implements Serializable {
+@Table(name = "PRODUCT_DOCUMENTS")
+@NamedQuery(name = "ProductDocumentEntity.findAll", query = "SELECT p FROM ProductDocumentEntity p")
+public class ProductDocumentEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "product_doc_detail_id")
-	private BigInteger productDocDetailId;
+	@Column(name = "PRODUCT_DOC_ID")
+	private BigInteger productDocumentId;
 
-	@Column(name = "doc_url")
+	@Column(name = "URL")
 	private String docUrl;
 
-	@Column(name = "product_doc_conf_id")
+	@Column(name = "PRODUCT_DOC_CONF_ID")
 	private BigInteger productDocConfId;
 
-	@Column(name = "product_id")
+	@Column(name = "PRODUCT_ID")
 	private BigInteger productId;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="product_doc_conf_id", insertable=false, updatable=false)
+	@JoinColumn(name="PRODUCT_DOC_CONF_ID", insertable=false, updatable=false)
 	private ProductDocConfEntity docConfiguration; 
 
-	public ProductDocDetailEntity() {
+	public ProductDocumentEntity() {
 	}
 
-	public BigInteger getProductDocDetailId() {
-		return this.productDocDetailId;
+	public BigInteger getProductDocumentId() {
+		return this.productDocumentId;
 	}
 
-	public void setProductDocDetailId(BigInteger productDocDetailId) {
-		this.productDocDetailId = productDocDetailId;
+	public void setProductDocumentId(BigInteger productDocumentId) {
+		this.productDocumentId = productDocumentId;
 	}
 
 	public String getDocUrl() {

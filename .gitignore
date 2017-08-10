@@ -18,4 +18,8 @@ target/
 
 dms-web/showcase/node_modules/
 dms-web/temp/
-dms-web/myApp.log
+dms-web/myApp.log
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -70,12 +70,20 @@
 		</dependency>
 
 
-		<!-- Datasource / JDBC Connectors -->
+		<!-- Datasource / JDBC Connectors 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.35</version>
+		</dependency> -->
+		
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>1.1.7</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>commons-dbcp</groupId>

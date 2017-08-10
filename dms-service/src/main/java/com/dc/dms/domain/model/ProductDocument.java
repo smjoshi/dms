@@ -1,6 +1,7 @@
 package com.dc.dms.domain.model;
 
-import com.dc.dms.entity.ProductDocDetailEntity;
+
+import com.dc.dms.entity.ProductDocumentEntity;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,19 +17,20 @@ import java.math.BigInteger;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ProductDocument implements Serializable {
 
-    private BigInteger productDocDetailId;
+    private BigInteger productDocumentId;
     private BigInteger productId;
     private BigInteger productDocConfId;
+
     private String docUrl;
 
     private ProductDocConfiguration docConfiguration;
 
-    public BigInteger getProductDocDetailId() {
-        return productDocDetailId;
+    public BigInteger getProductDocumentId() {
+        return productDocumentId;
     }
 
-    public void setProductDocDetailId(BigInteger productDocDetailId) {
-        this.productDocDetailId = productDocDetailId;
+    public void setProductDocumentId(BigInteger productDocDetailId) {
+        this.productDocumentId = productDocDetailId;
     }
 
     public BigInteger getProductId() {
@@ -63,11 +65,11 @@ public class ProductDocument implements Serializable {
         this.docConfiguration = docConfiguration;
     }
 
-    public void copyFromEntity(ProductDocDetailEntity pde) {
+    public void copyFromEntity(ProductDocumentEntity pde) {
 
         if (pde != null){
             this.setProductId(pde.getProductId());
-            this.setProductDocDetailId(pde.getProductDocDetailId());
+            this.setProductDocumentId(pde.getProductDocumentId());
             this.setProductDocConfId(pde.getProductDocConfId());
             this.setDocUrl(pde.getDocUrl());
         }

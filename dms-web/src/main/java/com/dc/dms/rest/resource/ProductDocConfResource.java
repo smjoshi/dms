@@ -3,13 +3,7 @@ package com.dc.dms.rest.resource;
 import java.math.BigInteger;
 import java.util.List;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
@@ -38,7 +32,7 @@ public class ProductDocConfResource {
 	@GET
 	@Path("/product/{productId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductDocConfiguration> getAllConfigurations(@QueryParam("productId") BigInteger productId) throws ApplicationRestException {
+	public List<ProductDocConfiguration> getAllConfigurations(@PathParam("productId") BigInteger productId) throws ApplicationRestException {
 
 		logger.debug("{componentName:ProductDocConfResource, methodName:getAllConfigurations, parameters{productId.toString()}}");
 

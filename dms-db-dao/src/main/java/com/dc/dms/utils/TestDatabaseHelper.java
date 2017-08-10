@@ -110,7 +110,7 @@ public class TestDatabaseHelper {
                 "ORGANIZATION",
                 "PRODUCT",
                 "PRODUCT_DOC_CONF",
-                "PRODUCT_DOC_DETAILS"
+                "PRODUCT_DOCUMENTS"
 
         };
         for (String table : tables) {

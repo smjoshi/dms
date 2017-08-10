@@ -111,7 +111,10 @@ public class LoginController {
 			mv.getModel().put("message", "Credentials are not correct, if not a member , SIGN UP!!");
 			mv.setViewName("login");
 		}
-		mv.getModelMap().addAttribute("user", createdUser);
+		if (createdUser != null){
+			mv.getModelMap().addAttribute("user", createdUser);
+		}
+
 		return mv;
 
 	}

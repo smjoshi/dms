@@ -4,12 +4,12 @@ import java.math.BigInteger;
 import java.util.List;
 
 import com.dc.dms.base.BaseDao;
-import com.dc.dms.entity.ProductDocDetailEntity;
+import com.dc.dms.entity.ProductDocumentEntity;
 import com.dc.dms.entity.ProductEntity;
 
-public interface ProductDocDetailDao extends BaseDao<ProductDocDetailEntity>{
+public interface ProductDocumentDao extends BaseDao<ProductDocumentEntity>{
 	
-	public List<ProductDocDetailEntity> getProductDocDetails(
+	public List<ProductDocumentEntity> getProductDocuments(
 			BigInteger productId);
 
 	public ProductEntity getProductDocuments(Integer orgId , Integer productId);

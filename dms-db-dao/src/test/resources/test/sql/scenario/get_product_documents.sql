@@ -10,6 +10,6 @@ INSERT INTO product_doc_conf (PR_DOC_CONF_ID,PRODUCT_ID,DOC_TYPE_CODE,DESCRIPTIO
 INSERT INTO product_doc_conf (PR_DOC_CONF_ID,PRODUCT_ID,DOC_TYPE_CODE,DESCRIPTION,IS_MANDATORY,GROUP_ID,IS_MULTIPLE_ITEM_ALLOWED) VALUES (300006,10,'BACKIMAGE','Vehicle Back side Image',true,0,false);
 
 
-INSERT INTO product_doc_details (product_doc_detail_id,product_id,product_doc_conf_id,doc_url) VALUES (80008,10,300003,'http://devdmsproducts01.s3.amazonaws.com/dev/maruti-suzuki-swift-image-9925.jpg');
-INSERT INTO product_doc_details (product_doc_detail_id,product_id,product_doc_conf_id,doc_url) VALUES (80009,10,300004,'http://devdmsproducts01.s3.amazonaws.com/dev/maruti-suzuki-swift-image-9925.jpg');
-INSERT INTO product_doc_details (product_doc_detail_id,product_id,product_doc_conf_id,doc_url) VALUES (80010,10,300005,'http://devdmsproducts01.s3.amazonaws.com/dev/maruti-suzuki-swift-image-9925.jpg');
+INSERT INTO product_documents (product_doc_id,product_id,product_doc_conf_id,url) VALUES (80008,10,300003,'http://devdmsproducts01.s3.amazonaws.com/dev/maruti-suzuki-swift-image-9925.jpg');
+INSERT INTO product_documents (product_doc_id,product_id,product_doc_conf_id,url) VALUES (80009,10,300004,'http://devdmsproducts01.s3.amazonaws.com/dev/maruti-suzuki-swift-image-9925.jpg');
+INSERT INTO product_documents (product_doc_id,product_id,product_doc_conf_id,url) VALUES (80010,10,300005,'http://devdmsproducts01.s3.amazonaws.com/dev/maruti-suzuki-swift-image-9925.jpg');

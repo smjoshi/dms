@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 @Entity
-@Table(name = "product_doc_conf")
+@Table(name = "PRODUCT_DOC_CONF")
 @NamedQuery(name = "ProductDocConfEntity.findAll", query = "SELECT pdc FROM ProductDocConfEntity pdc")
 public class ProductDocConfEntity implements Serializable {
 
@@ -33,7 +33,7 @@ public class ProductDocConfEntity implements Serializable {
     private String grouPId;
 
     @OneToOne(mappedBy = "docConfiguration")
-    private ProductDocDetailEntity docDetail;
+    private ProductDocumentEntity docDetail;
 
     public BigInteger getProductDocConfId() {
         return productDocConfId;
@@ -91,11 +91,11 @@ public class ProductDocConfEntity implements Serializable {
         this.grouPId = grouPId;
     }
 
-    public ProductDocDetailEntity getDocDetail() {
+    public ProductDocumentEntity getDocDetail() {
         return docDetail;
     }
 
-    public void setDocDetail(ProductDocDetailEntity docDetail) {
+    public void setDocDetail(ProductDocumentEntity docDetail) {
         this.docDetail = docDetail;
     }
 

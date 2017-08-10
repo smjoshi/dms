@@ -9,52 +9,52 @@ import javax.persistence.criteria.*;
 
 
 import com.dc.dms.entity.ProductDocConfEntity;
+import com.dc.dms.entity.ProductDocumentEntity;
 import com.dc.dms.entity.ProductEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.dc.dms.base.AbstractDmsDao;
 import com.dc.dms.dao.exception.DMSDaoException;
-import com.dc.dms.dao.intf.ProductDocDetailDao;
-import com.dc.dms.entity.ProductDocDetailEntity;
+import com.dc.dms.dao.intf.ProductDocumentDao;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
-@Qualifier("productDocDetailDao")
+@Qualifier("productDocumentDao")
 @Transactional
-public class ProductDocDetailsDaoImpl extends AbstractDmsDao implements ProductDocDetailDao {
+public class ProductDocumentsDaoImpl extends AbstractDmsDao implements ProductDocumentDao {
 
 	@Override
-	public ProductDocDetailEntity readByKey(ProductDocDetailEntity pdd) throws DMSDaoException {
-		return entityManager.find(ProductDocDetailEntity.class, pdd.getProductDocDetailId());
+	public ProductDocumentEntity readByKey(ProductDocumentEntity pdd) throws DMSDaoException {
+		return entityManager.find(ProductDocumentEntity.class, pdd.getProductDocumentId());
 	}
 
 	@Override
-	public ProductDocDetailEntity create(ProductDocDetailEntity pdd) throws DMSDaoException {
+	public ProductDocumentEntity create(ProductDocumentEntity pdd) throws DMSDaoException {
 		entityManager.persist(pdd);
 		return pdd;
 	}
 
 	@Override
-	public boolean update(ProductDocDetailEntity pdd) throws DMSDaoException {
+	public boolean update(ProductDocumentEntity pdd) throws DMSDaoException {
 		entityManager.merge(pdd);
 		return true;
 	}
 
 	@Override
-	public List<ProductDocDetailEntity> getProductDocDetails(BigInteger productId) {
+	public List<ProductDocumentEntity> getProductDocuments(BigInteger productId) {
 
-		List<ProductDocDetailEntity> docDetails = null;
-		String queryString = "SELECT pdd FROM ProductDocDetailEntity pdd where pdd.productId = ?1";
-		TypedQuery<ProductDocDetailEntity> query = entityManager.createQuery(queryString, ProductDocDetailEntity.class);
+		List<ProductDocumentEntity> docDetails = null;
+		String queryString = "SELECT pdd FROM ProductDocumentEntity pdd where pdd.productId = ?1";
+		TypedQuery<ProductDocumentEntity> query = entityManager.createQuery(queryString, ProductDocumentEntity.class);
 		query.setParameter(1, productId);
 		docDetails = query.getResultList();
 
 		return docDetails;
 	}
 
-	public boolean delete(ProductDocDetailEntity productDocDetailEntity) throws DMSDaoException {
+	public boolean delete(ProductDocumentEntity productDocDetailEntity) throws DMSDaoException {
 		boolean deleted = true;
 
 		entityManager.remove(entityManager.contains(productDocDetailEntity) ? productDocDetailEntity : entityManager.merge(productDocDetailEntity));
@@ -92,7 +92,7 @@ public class ProductDocDetailsDaoImpl extends AbstractDmsDao implements ProductD
 	}
 
 
-	private List<ProductEntity> getProductDocumentsdetails(Integer orgId , Integer productId){
+	private List<ProductEntity>getProductDocumentsdetails(Integer orgId , Integer productId){
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<ProductEntity> query =  cb.createQuery(ProductEntity.class);
@@ -100,7 +100,7 @@ public class ProductDocDetailsDaoImpl extends AbstractDmsDao implements ProductD
         Root<ProductEntity> product = query.from(ProductEntity.class);
 		product.fetch("docConfigurations");
         Join<ProductEntity, ProductDocConfEntity>  prodConf = product.join("docConfigurations");
-        Join<ProductDocConfEntity, ProductDocDetailEntity> docDetails = prodConf.join("docDetail");
+        Join<ProductDocConfEntity, ProductDocumentEntity> docDetails = prodConf.join("docDetail");
 
         //ParameterExpression<Integer> org = cb.parameter(Integer.class);
         //ParameterExpression<Integer> pr = cb.parameter(Integer.class);

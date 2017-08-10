@@ -10,7 +10,7 @@ import java.math.BigInteger;
  * 
  */
 @Entity
-@Table(name="users")
+@Table(name="USERS")
 @NamedQuery(name="UserEntity.findAll", query="SELECT u FROM UserEntity u")
 public class UserEntity implements Serializable {
 	

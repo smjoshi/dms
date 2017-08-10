@@ -32,7 +32,7 @@ public class OrgnizationResource {
 	@GET
 	@Path("/{orgId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Organization getOrgDetails(@QueryParam("orgId") BigInteger orgId) throws ApplicationRestException{
+	public Organization getOrgDetails(@PathParam("orgId") BigInteger orgId) throws ApplicationRestException{
 		Organization org = null;
 		try {
 			org = orgService.getOrganizationDetail(orgId);

@@ -67,11 +67,11 @@ CREATE INDEX fk_PRODUCT_DOC_CONF_PRODUCT1_idx ON product_doc_conf(PRODUCT_ID);
 CREATE INDEX PK_prod_doc_conf_idx ON product_doc_conf(PR_DOC_CONF_ID);
 
 -- Product doc details
-CREATE TABLE product_doc_details
+CREATE TABLE product_documents
 (
-   product_doc_detail_id bigint PRIMARY KEY auto_increment NOT NULL,
+   product_doc_id bigint PRIMARY KEY auto_increment NOT NULL,
    product_id bigint NOT NULL,
    product_doc_conf_id bigint NOT NULL,
-   doc_url varchar(100)
+   url varchar(100)
 );
-CREATE INDEX PRI_product_doc_details_idx ON product_doc_details(product_doc_detail_id);
+CREATE INDEX PRI_product_document_idx ON product_documents(product_doc_id);

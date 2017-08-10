@@ -11,11 +11,11 @@ import com.dc.dms.exception.DMSException;
  * @author sacjoshi
  *
  */
-public interface ProductDocDetailService {
+public interface ProductDocumentService {
 
-	public ProductDocument upsertProductDocDetails(ProductDocument pdd) throws DMSException;
+	public ProductDocument upsertProductDocuments(ProductDocument pdd) throws DMSException;
 
-	public List<ProductDocument> getProductDocDetails(BigInteger productId) throws DMSException;
+	public List<ProductDocument> getProductDocuments(BigInteger productId) throws DMSException;
 
 
 	public List<ProductDocDetail> getProductDocuments(Integer customerId, Integer productId) throws DMSException;

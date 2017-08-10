@@ -14,6 +14,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.dc.dms.Application;
+import com.dc.dms.intf.ProductDocumentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,6 @@ import com.dc.dms.domain.model.ProductDocDetail;
 import com.dc.dms.domain.model.ProductDocument;
 import com.dc.dms.exception.DMSException;
 import com.dc.dms.intf.ProductDocConfService;
-import com.dc.dms.intf.ProductDocDetailService;
 import com.dc.dms.rest.exception.ApplicationRestException;
 
 @Component
@@ -32,7 +32,7 @@ import com.dc.dms.rest.exception.ApplicationRestException;
 public class ProductDocDetailResource {
 
 	@Autowired
-	private ProductDocDetailService docDetailService = null;
+	private ProductDocumentService documentService = null;
 
 	@Autowired
 	private ProductDocConfService confService = null;
@@ -59,7 +59,7 @@ public class ProductDocDetailResource {
 			docConfig = confService.getProductDocConfigurations(productId);
 
 			// get document details
-			docList = docDetailService.getProductDocDetails(productId);
+			docList = documentService.getProductDocuments(productId);
 
 			ProductDocDetail pd = null;
 			for (ProductDocConfiguration config : docConfig) {
@@ -92,7 +92,7 @@ public class ProductDocDetailResource {
 		logger.debug("{ComponentName :ProductDocDetailResource , methodName:getProductDocuments, parameters{orgId:" + orgId + " productId:"+ productId + " }}");
 		List<ProductDocDetail> docDetails = null;
 		try {
-			docDetails =   docDetailService.getProductDocuments(orgId.intValue(), productId.intValue());
+			docDetails =   documentService.getProductDocuments(orgId.intValue(), productId.intValue());
 		} catch (DMSException e) {
 			e.printStackTrace();
 		}
@@ -108,7 +108,7 @@ public class ProductDocDetailResource {
 
 		ProductDocument dbProdDoc = null;
 		try {
-			dbProdDoc = docDetailService.upsertProductDocDetails(pd);
+			dbProdDoc = documentService.upsertProductDocuments(pd);
 		} catch (DMSException e) {
 			e.printStackTrace();
 			dbProdDoc = null;
@@ -125,12 +125,12 @@ public class ProductDocDetailResource {
 		this.confService = confService;
 	}
 
-	public ProductDocDetailService getDocDetailService() {
-		return docDetailService;
+	public ProductDocumentService getDocDetailService() {
+		return documentService;
 	}
 
-	public void setDocDetailService(ProductDocDetailService docDetailService) {
-		this.docDetailService = docDetailService;
+	public void setDocDetailService(ProductDocumentService docDetailService) {
+		this.documentService = docDetailService;
 	}
 
 }

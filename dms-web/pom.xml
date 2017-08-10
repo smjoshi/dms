@@ -164,11 +164,11 @@
 			<!--</plugin>-->
 
 			<!-- Fly way Maven plugin -->
-			<!--<plugin>-->
-				<!--<groupId>org.flywaydb</groupId>-->
-				<!--<artifactId>flyway-maven-plugin</artifactId>-->
-				<!--<version>4.0.3</version>-->
-			<!--</plugin>-->
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>4.0.3</version>
+			</plugin>
 
 			<!-- Plugin to execute command  "npm install" and "npm run build" inside /angular directory -->
 			<!--<plugin>-->

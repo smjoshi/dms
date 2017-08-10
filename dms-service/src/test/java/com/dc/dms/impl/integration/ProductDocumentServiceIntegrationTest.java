@@ -1,32 +1,27 @@
 package com.dc.dms.impl.integration;
 
 import com.dc.dms.config.DMSServiceConfig;
-import com.dc.dms.config.DatabaseJpaConfig;
 import com.dc.dms.config.TestDatabaseJpaConfig;
-import com.dc.dms.dao.intf.ProductDao;
 import com.dc.dms.domain.model.ProductDocDetail;
-import com.dc.dms.intf.ProductDocDetailService;
+import com.dc.dms.intf.ProductDocumentService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by sacjoshi on 12/5/2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { DMSServiceConfig.class, TestDatabaseJpaConfig.class })
-public class ProductDocDetailServiceIntegrationTest extends BaseServiceTest{
+public class ProductDocumentServiceIntegrationTest extends BaseServiceTest{
 
     @Autowired
-    ProductDocDetailService detailService = null;
+    ProductDocumentService detailService = null;
 
     @Test
     public void getProductDocuments() throws Exception {

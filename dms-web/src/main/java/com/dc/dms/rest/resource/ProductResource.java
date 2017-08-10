@@ -56,7 +56,7 @@ public class ProductResource {
 	@GET
 	@Path("/{productId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Product getProduct(@QueryParam("productId") BigInteger productId){
+	public Product getProduct(@PathParam("productId") BigInteger productId){
 		
 		Product product = null;
 		throw new UnsupportedOperationException(" getProduct - Operation not yet implemented");

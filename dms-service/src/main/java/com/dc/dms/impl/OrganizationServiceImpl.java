@@ -103,6 +103,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 			org.setOrgId(orgEntity.getOrgId());
 			org.setOrgName(orgEntity.getOrgName());
 			org.setOrgType(orgEntity.getOrgType());
+			org.setUserId(orgEntity.getUserId());
 		}
 		return org;
 	}
