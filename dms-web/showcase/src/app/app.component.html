@@ -1,3 +1,33 @@
-<h1>
-  {{title}}
-</h1>
+<nav class="navbar navbar-light">
+    <div class="container">
+        <a class="navbar-brand">Showcase</a>
+
+        <ul class="nav navbar-nav pull-xs-right">
+            <li class="nav-item">
+              <a class="nav-link"
+                routerLink="/">
+                Home
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link"
+                routerLink="/signin"
+                routerLinkActive="active">
+                Sign in
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link"   
+                routerLink="/signup"
+                routerLinkActive="active">
+                Sign up
+              </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div>
+ <router-outlet></router-outlet>
+</div>
